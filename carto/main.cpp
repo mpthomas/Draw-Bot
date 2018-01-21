@@ -1,20 +1,12 @@
-#include <iostream>
-#include <iomanip>
-#include <vector>
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/core/core.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include "ANN/ANN.h"
-#include "CartoSimulator.hpp"
-
-#include <stdlib.h>
-#include <stdio.h>
+#include "carto_includes.h"
 
 struct Node {
     std::vector<Node>neighbors;
     cv::Point point;
 };
 using namespace cv;
+using namespace Carto;
+
 
 /// Global variables
 ///
@@ -34,7 +26,7 @@ CartoSimulator sim;
 bool windowInit=false;
 
 void CannyThreshold(int pos,void *userData);
-void RenderGraph(std::vector<Node> nodes, Mat* img, Point start_point);
+void RenderGraph(std::vector<CartoNode::CartoNode> nodes, Mat* img, Point start_point);
 int EDistance(Point p1, Point p2);
 void ProcessPic(int event,int,int,int,void*);
     
@@ -59,87 +51,10 @@ void CannyThreshold(int pos, void *userData)
     ProcessPic(EVENT_LBUTTONDOWN, 0, 0, 0, nullptr); 
 }
 
-void annBuildPath(std::vector<Node> *path){
-    int i=0, j=0, acc=0, dim = 2, k=1, eps=0;
-    int nPts=0;              // actual number of data points
-    ANNpointArray dataPts; // data points
-    ANNpoint queryPt;      // query point
-    ANNidxArray nnIdx;     // near neighbor indices
-    ANNdistArray dists;    // near neighbor distances
-    ANNkd_tree* kdTree;    // search structure
-    
-    for(i=0; i != detected_edges.rows; i++){
-        for(j=0; j != detected_edges.cols; j++){
-            int pixel = detected_edges.at<uchar>(i,j);
-            if(pixel > 0) {
-                nPts++;
-            }
-        }
-    }
-    
-    queryPt=annAllocPt(dim);
-    dataPts=annAllocPts(nPts, dim);
-    nnIdx=new ANNidx[k];
-    dists = new ANNdist[k];
-
-    for(i=0; i != detected_edges.rows; i++){
-        for(j=0; j != detected_edges.cols; j++){
-            int pixel = detected_edges.at<uchar>(i,j);
-            if(pixel > 0) {
-                dataPts[acc][0] = (double)j;
-                dataPts[acc][1] = (double)i;
-                
-               // std::cout << "Set Data points: " << dataPts[acc][0] << std::endl;
-                acc++;
-            }
-        }
-    }
-    kdTree = new ANNkd_tree(                    // build search structure
-                            dataPts,                    // the data points
-                            nPts,                       // number of points
-                            dim);                       // dimension of space
-
-    queryPt[0]=0;
-    queryPt[1]=0;
-    
-    for(i=0;i<nPts;i++){
-        kdTree->annkPriSearch(                     // search
-                           queryPt,                        // query point
-                           k,                              // number of near neighbors
-                           nnIdx,                          // nearest neighbors (returned)
-                           dists,                          // distance (returned)
-                           eps);                           // error bound
-        Node n;
-        n.point=Point(dataPts[nnIdx[0]][0], dataPts[nnIdx[0]][1]);
-        
-        path->push_back(n);
-        //annDeallocPt(*dataPts[nnIdx[0]]);
-        queryPt[0]=n.point.x;
-        queryPt[1]=n.point.y;
-        
-        dataPts[nnIdx[0]][0]=NULL;
-        dataPts[nnIdx[0]][1]=NULL;
-        
-        /* Rebuild the Tree */
-        //delete kdTree;
-        //kdTree = new ANNkd_tree(                    // build search structure
-        //                        dataPts,                    // the data points
-        //                        nPts,                       // number of points
-        //                        dim);                       // dimension of space
-        
-       
-       // std::cout << "Points: " << n.point << " Matched at index " << nnIdx[0] << " Distance: " << dists[0] << std::endl;
-    }
-    
-    delete [] nnIdx;
-    delete []  dists;
-    delete kdTree;
-    annClose();
-}
-
 void ProcessPic(int event,int,int,int,void*){
     Point prev_point;
-    std::vector<Node>annPath;
+    Carto::CartoPath *path = new CartoPath();
+    std::vector<Carto::CartoNode> annPath;
     
     if (event != EVENT_LBUTTONDOWN)
         return;
@@ -149,9 +64,9 @@ void ProcessPic(int event,int,int,int,void*){
     acc_img = src.clone();
     acc_img = Scalar::all(255);
     
-    annBuildPath(&annPath);
+    path->buildANNPath(&annPath);
     
-    if(detected_edges.rows > 0) {
+    if(path->detected_edges.rows > 0) {
         
         sim = CartoSimulator(&cart_img);
         RenderGraph(annPath, &cart_img, Point(0,0));
@@ -162,12 +77,10 @@ void ProcessPic(int event,int,int,int,void*){
     imshow("Cart",cart_img);
     imshow("Accumulator",acc_img);
     
-    
-    
     return;
 }
 
-void RenderGraph(std::vector<Node> nodes, Mat* img, Point start_point) {
+void RenderGraph(std::vector<CartoNode::CartoNode> nodes, Mat* img, Point start_point) {
     //Mat cart_img = Mat::zeros(detected_edges.rows,detected_edges.cols,CV_8UC3);
     int thickness = 1;
     int lineType=8;

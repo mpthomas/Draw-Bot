@@ -13,6 +13,8 @@
 		C9D8B1031F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
 		C9D8B1081F8DA8750099956C /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
 		C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
+		C9D8B1102014347E0099956C /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
+		C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -38,6 +40,11 @@
 		C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoMoveTest.cpp; sourceTree = "<group>"; };
 		C9D8B1091F8F1A180099956C /* CartoMoveTest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CartoMoveTest.hpp; sourceTree = "<group>"; };
 		C9D8B10B1FCCFCAF0099956C /* car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = car.jpg; sourceTree = "<group>"; };
+		C9D8B10E2014347E0099956C /* CartoPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoPath.cpp; sourceTree = "<group>"; };
+		C9D8B10F2014347E0099956C /* CartoPath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoPath.hpp; sourceTree = "<group>"; };
+		C9D8B111201435AB0099956C /* CartoNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoNode.cpp; sourceTree = "<group>"; };
+		C9D8B112201435AB0099956C /* CartoNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoNode.hpp; sourceTree = "<group>"; };
+		C9D8B115201436EF0099956C /* carto_includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = carto_includes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +89,11 @@
 				C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */,
 				C9D8B10B1FCCFCAF0099956C /* car.jpg */,
 				C9D8B1091F8F1A180099956C /* CartoMoveTest.hpp */,
+				C9D8B10E2014347E0099956C /* CartoPath.cpp */,
+				C9D8B10F2014347E0099956C /* CartoPath.hpp */,
+				C9D8B111201435AB0099956C /* CartoNode.cpp */,
+				C9D8B112201435AB0099956C /* CartoNode.hpp */,
+				C9D8B115201436EF0099956C /* carto_includes.h */,
 			);
 			path = carto;
 			sourceTree = "<group>";
@@ -143,6 +155,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9D8B1102014347E0099956C /* CartoPath.cpp in Sources */,
+				C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */,
 				C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */,
 				C9D8B1081F8DA8750099956C /* CartoMoveTest.cpp in Sources */,
 				C9D8B0F81F8093C60099956C /* main.cpp in Sources */,
@@ -260,7 +274,6 @@
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
-					/Users/matt/xcode/ortools/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-v",
@@ -277,7 +290,6 @@
 					/usr/local/lib,
 					/Users/matt/xcode/ann/lib,
 					.,
-					/Users/matt/xcode/ortools/lib,
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
@@ -290,7 +302,6 @@
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
-					/Users/matt/xcode/ortools/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-v",
@@ -319,6 +330,7 @@
 				C9D8B0FD1F8093C60099956C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
