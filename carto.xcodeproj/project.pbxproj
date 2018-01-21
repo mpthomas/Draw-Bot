@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C9D8B0F81F8093C60099956C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B0F71F8093C60099956C /* main.cpp */; };
 		C9D8B1011F80A9E40099956C /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
 		C9D8B1021F80A9E40099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
 		C9D8B1031F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
@@ -15,10 +14,30 @@
 		C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
 		C9D8B1102014347E0099956C /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
+		C9D8B11C2014F5C00099956C /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
+		C9D8B11D2014F5C00099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
+		C9D8B11E2014F5C00099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
+		C9D8B11F2014F5C00099956C /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
+		C9D8B1222014F5C00099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
+		C9D8B1232014F5C00099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
+		C9D8B1242014F5C00099956C /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
+		C9F8E69D2014FB3800D554F6 /* grayscale_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69A2014FA0600D554F6 /* grayscale_filter.cpp */; };
+		C9F8E69E2014FE1800D554F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B0F71F8093C60099956C /* main.cpp */; };
+		C9F8E6A12014FEC100D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
+		C9F8E6A22014FEC100D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		C9D8B0F21F8093C60099956C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		C9D8B1252014F5C00099956C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -45,6 +64,12 @@
 		C9D8B111201435AB0099956C /* CartoNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoNode.cpp; sourceTree = "<group>"; };
 		C9D8B112201435AB0099956C /* CartoNode.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoNode.hpp; sourceTree = "<group>"; };
 		C9D8B115201436EF0099956C /* carto_includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = carto_includes.h; sourceTree = "<group>"; };
+		C9D8B1192014F5370099956C /* tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tests; sourceTree = "<group>"; };
+		C9D8B1292014F5C00099956C /* grayscale_filter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = grayscale_filter; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9F8E69A2014FA0600D554F6 /* grayscale_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grayscale_filter.cpp; sourceTree = "<group>"; };
+		C9F8E69B2014FA0600D554F6 /* grayscale_filter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grayscale_filter.hpp; sourceTree = "<group>"; };
+		C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoImageProc.cpp; sourceTree = "<group>"; };
+		C9F8E6A02014FEC100D554F6 /* CartoImageProc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoImageProc.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +80,16 @@
 				C9D8B1021F80A9E40099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */,
 				C9D8B1031F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */,
 				C9D8B1011F80A9E40099956C /* libopencv_core.2.4.13.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9D8B1212014F5C00099956C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9D8B1222014F5C00099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */,
+				C9D8B1232014F5C00099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */,
+				C9D8B1242014F5C00099956C /* libopencv_core.2.4.13.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				C9D8B0F41F8093C60099956C /* carto */,
+				C9D8B1292014F5C00099956C /* grayscale_filter */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -80,7 +116,12 @@
 		C9D8B0F61F8093C60099956C /* carto */ = {
 			isa = PBXGroup;
 			children = (
+				C9F8E69A2014FA0600D554F6 /* grayscale_filter.cpp */,
+				C9F8E69B2014FA0600D554F6 /* grayscale_filter.hpp */,
+				C9D8B1192014F5370099956C /* tests */,
 				C9D8B0F71F8093C60099956C /* main.cpp */,
+				C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */,
+				C9F8E6A02014FEC100D554F6 /* CartoImageProc.hpp */,
 				C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */,
 				C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */,
 				C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */,
@@ -118,6 +159,23 @@
 			productReference = C9D8B0F41F8093C60099956C /* carto */;
 			productType = "com.apple.product-type.tool";
 		};
+		C9D8B11A2014F5C00099956C /* grayscale_filter */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9D8B1262014F5C00099956C /* Build configuration list for PBXNativeTarget "grayscale_filter" */;
+			buildPhases = (
+				C9D8B11B2014F5C00099956C /* Sources */,
+				C9D8B1212014F5C00099956C /* Frameworks */,
+				C9D8B1252014F5C00099956C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = grayscale_filter;
+			productName = carto;
+			productReference = C9D8B1292014F5C00099956C /* grayscale_filter */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -146,6 +204,7 @@
 			projectRoot = "";
 			targets = (
 				C9D8B0F31F8093C60099956C /* carto */,
+				C9D8B11A2014F5C00099956C /* grayscale_filter */,
 			);
 		};
 /* End PBXProject section */
@@ -158,8 +217,22 @@
 				C9D8B1102014347E0099956C /* CartoPath.cpp in Sources */,
 				C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */,
 				C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */,
+				C9F8E6A12014FEC100D554F6 /* CartoImageProc.cpp in Sources */,
+				C9F8E69E2014FE1800D554F6 /* main.cpp in Sources */,
 				C9D8B1081F8DA8750099956C /* CartoMoveTest.cpp in Sources */,
-				C9D8B0F81F8093C60099956C /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9D8B11B2014F5C00099956C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9F8E69D2014FB3800D554F6 /* grayscale_filter.cpp in Sources */,
+				C9D8B11C2014F5C00099956C /* CartoPath.cpp in Sources */,
+				C9D8B11D2014F5C00099956C /* CartoNode.cpp in Sources */,
+				C9F8E6A22014FEC100D554F6 /* CartoImageProc.cpp in Sources */,
+				C9D8B11E2014F5C00099956C /* CartoSimulator.cpp in Sources */,
+				C9D8B11F2014F5C00099956C /* CartoMoveTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,13 +333,11 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					/usr/local/lib,
-					/users/matt/xcode/ortools/lib,
 					/Users/matt/xcode/ann/lib,
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
-					/Users/matt/xcode/ortools/include,
 					.,
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -294,7 +365,56 @@
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
-					/Users/matt/xcode/ortools/include,
+					.,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
+					"$(PROJECT_DIR)/carto",
+					/Users/matt/xcode/ann/lib,
+					.,
+				);
+				OTHER_LDFLAGS = (
+					"-v",
+					"-lANN",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C9D8B1272014F5C00099956C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = /Users/matt/xcode/ann/lib;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/Users/matt/xcode/ann/include,
+					.,
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
+					"$(PROJECT_DIR)/carto",
+					/Users/matt/xcode/ann/lib,
+					.,
+				);
+				OTHER_LDFLAGS = (
+					"-v",
+					"-lANN",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C9D8B1282014F5C00099956C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					/usr/local/lib,
+					/Users/matt/xcode/ann/lib,
+					.,
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/Users/matt/xcode/ann/include,
 					.,
 				);
 				LIBRARY_SEARCH_PATHS = (
@@ -328,6 +448,15 @@
 			buildConfigurations = (
 				C9D8B0FC1F8093C60099956C /* Debug */,
 				C9D8B0FD1F8093C60099956C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9D8B1262014F5C00099956C /* Build configuration list for PBXNativeTarget "grayscale_filter" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9D8B1272014F5C00099956C /* Debug */,
+				C9D8B1282014F5C00099956C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
