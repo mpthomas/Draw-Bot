@@ -17,7 +17,7 @@ struct Node {
 using namespace cv;
 
 /// Global variables
-
+///
 Mat src, src_gray;
 Mat dst, detected_edges, cart_img, acc_img;
 //VideoCapture cap(0); // open the default camera
