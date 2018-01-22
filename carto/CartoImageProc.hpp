@@ -37,6 +37,7 @@ public:
     cv::Mat filterGrayscale(int start, int end);
     void toGrayscale();
     void show();
+    void show(cv::Mat mat, std::string name);
     
 };
 }

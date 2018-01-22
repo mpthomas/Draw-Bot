@@ -40,7 +40,6 @@ namespace Carto {
     cv::Mat CartoImageProc::filterGrayscale(int start, int end){
         Mat filtered;
         
-        this->toGrayscale();
         filtered=this->mat.clone();
         filtered=Scalar::all(255);
         
@@ -66,8 +65,12 @@ namespace Carto {
         
         this->window_ctr++;
         
-        namedWindow(this->image_name,CV_WINDOW_AUTOSIZE);
-        imshow(this->image_name,this->mat);
-        waitKey(0);
+        namedWindow(window_name,CV_WINDOW_AUTOSIZE);
+        imshow(window_name,this->mat);
+    }
+    
+    void CartoImageProc::show(Mat mat, std::string name) {
+        namedWindow(name);
+        imshow(name,mat);
     }
 }
