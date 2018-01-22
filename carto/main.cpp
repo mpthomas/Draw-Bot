@@ -112,7 +112,7 @@ void RenderGraph(std::vector<CartoNode::CartoNode> nodes, Mat* img, Point start_
         
         if(nodes[i].neighbors.size() > 0) {
             RenderGraph(nodes[i].neighbors, img, nodes[i].point);
-        }
+        }`
         
         start_point=nodes[i].point;
     }

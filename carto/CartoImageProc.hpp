@@ -35,6 +35,8 @@ public:
     cv::Mat getMat();
     
     cv::Mat filterGrayscale(int start, int end);
+    void filterGrayscale(cv::Mat *inmat, int start, int end);
+    void filterPerlin(cv::Mat *inmat, double scale);
     void toGrayscale();
     void show();
     void show(cv::Mat mat, std::string name);

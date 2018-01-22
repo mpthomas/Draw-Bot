@@ -9,6 +9,7 @@
 #include "CartoImageProc.hpp"
 #include <iostream>
 #include <sys/stat.h>
+#include "PerlinNoise.hpp"
 
 namespace Carto {
 
@@ -37,22 +38,43 @@ namespace Carto {
         this->mat=mat.clone();
     }
     
-    cv::Mat CartoImageProc::filterGrayscale(int start, int end){
-        Mat filtered;
+    void CartoImageProc::filterGrayscale(cv::Mat *inmat, int start, int end){
+        Mat tmp = Mat::zeros(inmat->rows, inmat->cols, CV_8UC3);
+        tmp=Scalar::all(255);
         
-        filtered=this->mat.clone();
-        filtered=Scalar::all(255);
-        
-        for(int x=0; x<this->mat.cols; x++){
-            for(int y=0; y<this->mat.rows; y++) {
-                uchar val=this->mat.at<uchar>(Point(x,y));
+        for(int x=0; x<inmat->cols; x++){
+            for(int y=0; y<inmat->rows; y++) {
+                uchar val=inmat->at<uchar>(Point(x,y));
 
                 if(val > (uchar)start && val < (uchar)end) {
-                    filtered.at<uchar>(Point(x,y))=val;
+                    inmat->at<uchar>(Point(x,y))=val;
+                }else{
+                    inmat->at<uchar>(Point(x,y))=255;
                 }
             }
         }
-        return filtered;
+    }
+
+    void CartoImageProc::filterPerlin(cv::Mat *inmat, double scale){
+        //Mat tmp = Mat::zeros(inmat->rows, inmat->cols, CV_8UC3);
+        //tmp=Scalar::all(255);
+        
+        Mat perlin = CreatePerlinNoiseImage(Size(inmat->cols,inmat->rows),scale);
+        imshow("151 to 200",perlin);
+        uchar inmat_val, perlin_val;
+        
+        for(int x=0; x<inmat->cols; x++){
+            for(int y=0; y<inmat->rows; y++) {
+                inmat_val=inmat->at<uchar>(Point(x,y));
+                perlin_val=perlin.at<uchar>(Point(x,y));
+                
+                if(inmat_val < 255 && perlin_val < 125) {
+                    inmat->at<uchar>(Point(x,y))=255;
+                }else if (inmat_val < 255){
+                    inmat->at<uchar>(Point(x,y))=0;
+                }
+            }
+        }
     }
     
     void CartoImageProc::toGrayscale() {
