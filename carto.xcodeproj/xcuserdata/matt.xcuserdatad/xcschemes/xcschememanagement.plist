@@ -14,6 +14,11 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>random_walker.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -23,6 +28,11 @@
 			<true/>
 		</dict>
 		<key>C9D8B11A2014F5C00099956C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9F8E6A7201560DC00D554F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
