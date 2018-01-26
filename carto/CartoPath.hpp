@@ -8,6 +8,9 @@
 
 #ifndef CartoPath_hpp
 #define CartoPath_hpp
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/core/core.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
 
 namespace Carto {
 
@@ -15,7 +18,7 @@ namespace Carto {
     
 class CartoPath {
 public:
-    Mat detected_edges;
+    cv::Mat detected_edges;
     
     CartoPath();
     ~CartoPath();

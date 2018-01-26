@@ -10,6 +10,8 @@
 #include <iostream>
 #include <sys/stat.h>
 #include "PerlinNoise.hpp"
+#include "CartoPath.hpp"
+#include "CartoNode.hpp"
 
 namespace Carto {
 
@@ -20,7 +22,7 @@ namespace Carto {
         this->image_name.assign("CartoImageProc");
     }
     
-    CartoImageProc::CartoImageProc(std::string filename) {
+    CartoImageProc::CartoImageProc(std::string filename, int id) {
         struct stat buffer;
 
         if(stat(filename.c_str(), &buffer) == 0) {
@@ -30,6 +32,8 @@ namespace Carto {
             cout << "File not found: " << filename << endl;
             exit(1);
         }
+        
+        this->id=id;
     }
     
     CartoImageProc::~CartoImageProc() {}
@@ -94,5 +98,36 @@ namespace Carto {
     void CartoImageProc::show(Mat mat, std::string name) {
         namedWindow(name);
         imshow(name,mat);
+    }
+    
+    void CartoImageProc::buildPath(Mat *inmat) {
+        CartoPath *path = new CartoPath();
+        std::vector<CartoNode> annPath;
+        
+        path->detected_edges=*inmat;
+        path->buildANNPath(&annPath);
+        
+        if(annPath.size() == 0) {
+            return;
+        }
+        
+        this->renderPath(annPath, inmat, Point(0,0));
+    }
+    
+    void CartoImageProc::renderPath(std::vector<CartoNode::CartoNode> annNode, Mat *inmat, Point start_point){
+        if(annNode.size() == 0) {
+            return;
+        }
+        
+        for(int i=0;i<annNode.size();i++) {
+
+            line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
+            
+            if(annNode[i].neighbors.size() > 0) {
+                this->renderPath(annNode[i].neighbors,inmat,annNode[i].point);
+            }
+            
+            start_point=annNode[i].point;
+        }
     }
 }
