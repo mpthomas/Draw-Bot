@@ -16,6 +16,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "CartoPath.hpp"
 #include "CartoNode.hpp"
+#include "CartoSimulator.hpp"
 
 namespace Carto {
 
@@ -24,6 +25,7 @@ public:
     std::string image_name;
     int window_ctr,id;
     cv::Mat mat;
+    CartoSimulator *sim;
 
     // Constructors
     CartoImageProc();

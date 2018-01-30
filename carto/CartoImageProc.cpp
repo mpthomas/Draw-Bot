@@ -12,6 +12,7 @@
 #include "PerlinNoise.hpp"
 #include "CartoPath.hpp"
 #include "CartoNode.hpp"
+#include "CartoSimulator.hpp"
 
 namespace Carto {
 
@@ -64,7 +65,7 @@ namespace Carto {
         //tmp=Scalar::all(255);
         
         Mat perlin = CreatePerlinNoiseImage(Size(inmat->cols,inmat->rows),scale);
-        imshow("151 to 200",perlin);
+        //imshow("151 to 200",perlin);
         uchar inmat_val, perlin_val;
         
         for(int x=0; x<inmat->cols; x++){
@@ -104,13 +105,19 @@ namespace Carto {
         CartoPath *path = new CartoPath();
         std::vector<CartoNode> annPath;
         
-        path->detected_edges=*inmat;
+        path->detected_edges=inmat->clone();
+        *inmat=Scalar::all(255);
+        
         path->buildANNPath(&annPath);
         
-        if(annPath.size() == 0) {
+        std::cout << "Found" << path->detected_edges.rows << " edges" << std::endl;
+        
+        if(path->detected_edges.rows == 0) {
+            std::cout << "No rows found" << std::endl;
             return;
         }
         
+        this->sim=new CartoSimulator::CartoSimulator(inmat);
         this->renderPath(annPath, inmat, Point(0,0));
     }
     
@@ -119,8 +126,11 @@ namespace Carto {
             return;
         }
         
+        //std::cout << "CartoImageProc::renderPath point: " << start_point << std::endl;
+        
         for(int i=0;i<annNode.size();i++) {
-
+            this->sim->MoveToPoint(annNode[i].point,1);
+            
             line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
             
             if(annNode[i].neighbors.size() > 0) {

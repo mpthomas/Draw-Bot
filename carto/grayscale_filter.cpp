@@ -21,6 +21,7 @@ using namespace cv;
 void refresh_window(int pos, void *userData);
 void init_window(int window_number);
 void refresh_preview();
+void refresh_path();
 void decrement_preview(Mat *edges, Mat *preview, uchar amount);
 void waitLoop();
 
@@ -43,7 +44,7 @@ void refresh(int pos, void *userData);
 int main( int argc, char** argv ){
     img=new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg");
     img->toGrayscale();
-    
+    /*
     imgmat1 = img->mat.clone();
     imgmat2 = img->mat.clone();
     imgmat3 = img->mat.clone();
@@ -74,7 +75,7 @@ int main( int argc, char** argv ){
     createTrackbar("Start","0 to 150",&start, 50, refresh);
     createTrackbar("End","0 to 150",&end, 200, refresh);
     createTrackbar("Perlin","0 to 150",&perlin_scale, 100, refresh);
-    
+    */
     procs[0]->toGrayscale();
     procs[1]->toGrayscale();
     procs[2]->toGrayscale();
@@ -82,7 +83,7 @@ int main( int argc, char** argv ){
     init_window((int)0);
     init_window((int)1);
 
-    waitKey(0);
+    waitLoop();
 }
 
 void waitLoop() {
@@ -91,8 +92,12 @@ void waitLoop() {
         
         switch(key) {
             case 'r': {
-                img->buildPath(&preview);
-                img->show(preview,"Preview");
+                refresh_preview();
+                break;
+            }
+            case 'p': {
+                refresh_preview();
+                refresh_path();
                 break;
             }default: { exit(0); }
         }
@@ -125,7 +130,7 @@ void init_window(int win_number) {
     
     p->show(*i,window_name);
     
-    refresh_preview();
+    //refresh_preview();
     
     if(!(getTrackbarPos("Start",window_name) > 0)) {
         createTrackbar("Start",window_name,&starts[window_number],255,refresh_window,(void *)&p->id);
@@ -150,8 +155,13 @@ void refresh_preview() {
     decrement_preview(&edges[0],&preview,50);
     decrement_preview(&edges[1],&preview,100);
     
-    img->buildPath(&preview);
+    //img->buildPath(&preview);
     img->show(preview,"Preview");
+}
+
+void refresh_path() {
+    img->buildPath(&preview);
+    img->show(preview,"Path");
 }
 
 void decrement_preview(Mat *edges, Mat *preview, uchar amount){

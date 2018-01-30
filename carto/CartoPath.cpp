@@ -25,7 +25,7 @@ CartoPath::~CartoPath() {}
     for(i=0; i != this->detected_edges.rows; i++){
         for(j=0; j != this->detected_edges.cols; j++){
             int pixel = this->detected_edges.at<uchar>(i,j);
-            if(pixel > 0) {
+            if(pixel < 255) {
                 nPts++;
             }
         }
@@ -39,7 +39,7 @@ CartoPath::~CartoPath() {}
     for(i=0; i != this->detected_edges.rows; i++){
         for(j=0; j != this->detected_edges.cols; j++){
             int pixel = this->detected_edges.at<uchar>(i,j);
-            if(pixel > 0) {
+            if(pixel < 255) {
                 dataPts[acc][0] = (double)j;
                 dataPts[acc][1] = (double)i;
                 

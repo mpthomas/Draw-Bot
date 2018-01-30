@@ -466,6 +466,7 @@
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
 					.,
+					"-I/usr/local/Cellar/nlohmann_json/3.0.1/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
@@ -493,6 +494,7 @@
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
 					.,
+					"-I/usr/local/Cellar/nlohmann_json/3.0.1/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
