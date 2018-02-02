@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>carto copy 2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>5</integer>
+		</dict>
 		<key>carto copy.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +18,16 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
+		</dict>
+		<key>ortools_tsp.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>4</integer>
+		</dict>
+		<key>random_walker copy.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>random_walker.xcscheme</key>
 		<dict>
@@ -33,6 +48,16 @@
 			<true/>
 		</dict>
 		<key>C9F8E6A7201560DC00D554F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9F8E6B72020172100D554F6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C9F8E6C520201AB000D554F6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,11 +8,38 @@
 
 #include "CartoPath.hpp"
 #include "CartoNode.hpp"
+#include <memory>
+#include <stdio.h>
+
+#include "ortools/base/callback.h"
+#include "ortools/base/commandlineflags.h"
+#include "ortools/base/commandlineflags.h"
+#include "ortools/base/integral_types.h"
+#include "google/protobuf/text_format.h"
+#include "ortools/base/join.h"
+#include "ortools/base/join.h"
+#include "ortools/constraint_solver/routing.h"
+#include "ortools/constraint_solver/routing_enums.pb.h"
+#include "ortools/constraint_solver/routing_flags.h"
+#include "ortools/base/random.h"
+
+DEFINE_int32(tsp_size, 3, "Size of Traveling Salesman Problem instance.");
+DEFINE_bool(tsp_use_random_matrix, false, "Use random cost matrix.");
+DEFINE_int32(tsp_random_forbidden_connections, 0,
+             "Number of random forbidden connections.");
+DEFINE_bool(tsp_use_deterministic_random_seed, false,
+            "Use deterministic random seeds.");
+
+using namespace operations_research;
 
 namespace Carto {
 CartoPath::CartoPath() {}
 CartoPath::~CartoPath() {}
 
+    void CartoPath::buildTSP(std::vector<Carto::CartoNode> *path) {
+        
+    }
+    
     void CartoPath::buildANNPath(std::vector<Carto::CartoNode> *path){
     int i=0, j=0, acc=0, dim = 2, k=1, eps=0;
     int nPts=0;              // actual number of data points

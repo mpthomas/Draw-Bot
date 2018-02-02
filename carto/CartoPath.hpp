@@ -23,6 +23,7 @@ public:
     CartoPath();
     ~CartoPath();
     void buildANNPath(std::vector<Carto::CartoNode> *path);
+    void buildTSP(std::vector<Carto::CartoNode> *path);
     int distance(cv::Point p1, cv::Point p2);
 };
 }

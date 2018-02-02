@@ -12,9 +12,7 @@
 		C9D8B1031F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
 		C9D8B1081F8DA8750099956C /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
 		C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
-		C9D8B1102014347E0099956C /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
-		C9D8B11C2014F5C00099956C /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C9D8B11D2014F5C00099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
 		C9D8B11E2014F5C00099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
 		C9D8B11F2014F5C00099956C /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
@@ -30,6 +28,20 @@
 		C9F8E6B42016290600D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
 		C9F8E6B52016333800D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
 		C9F8E6B62016333900D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
+		C9F8E6C720201AB000D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
+		C9F8E6C820201AB000D554F6 /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
+		C9F8E6C920201AB000D554F6 /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
+		C9F8E6CA20201AB000D554F6 /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
+		C9F8E6CB20201AB000D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
+		C9F8E6CD20201AB000D554F6 /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
+		C9F8E6CF20201AB000D554F6 /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
+		C9F8E6D020201AB000D554F6 /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
+		C9F8E6D120201AB000D554F6 /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
+		C9F8E6D720201AC100D554F6 /* tsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6C22020175100D554F6 /* tsp.cpp */; };
+		C9F8E6DA20203AC600D554F6 /* libortools.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F8E6D920203AC600D554F6 /* libortools.dylib */; };
+		C9F8E6DB2024B3C200D554F6 /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
+		C9F8E6DD2024B44300D554F6 /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
+		C9F8E6DE2024B4BA00D554F6 /* libortools.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F8E6D920203AC600D554F6 /* libortools.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -52,6 +64,15 @@
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 		C9F8E6A6201560DC00D554F6 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+		C9F8E6D220201AB000D554F6 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = /usr/share/man/man1/;
@@ -91,6 +112,10 @@
 		C9F8E6B02015611400D554F6 /* random_walker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = random_walker.hpp; sourceTree = "<group>"; };
 		C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinNoise.cpp; sourceTree = "<group>"; };
 		C9F8E6B32016290600D554F6 /* PerlinNoise.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PerlinNoise.hpp; sourceTree = "<group>"; };
+		C9F8E6C22020175100D554F6 /* tsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tsp.cpp; sourceTree = "<group>"; };
+		C9F8E6C32020175100D554F6 /* tsp.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = tsp.hpp; sourceTree = "<group>"; };
+		C9F8E6D620201AB000D554F6 /* ortools_tsp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ortools_tsp; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9F8E6D920203AC600D554F6 /* libortools.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libortools.dylib; path = "/Users/matt/xcode/Cartogrifer/carto/carto/../../../or-tools-6.4/lib/libortools.dylib"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +133,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9F8E6DE2024B4BA00D554F6 /* libortools.dylib in Frameworks */,
 				C9D8B1222014F5C00099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */,
 				C9D8B1232014F5C00099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */,
 				C9D8B1242014F5C00099956C /* libopencv_core.2.4.13.dylib in Frameworks */,
@@ -121,6 +147,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C9F8E6CE20201AB000D554F6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9F8E6DA20203AC600D554F6 /* libortools.dylib in Frameworks */,
+				C9F8E6CF20201AB000D554F6 /* libopencv_highgui.2.4.13.dylib in Frameworks */,
+				C9F8E6D020201AB000D554F6 /* libopencv_imgproc.2.4.13.dylib in Frameworks */,
+				C9F8E6D120201AB000D554F6 /* libopencv_core.2.4.13.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -130,6 +167,7 @@
 				C9D8B0F61F8093C60099956C /* carto */,
 				C9F8E6A9201560DC00D554F6 /* random_walker */,
 				C9D8B0F51F8093C60099956C /* Products */,
+				C9F8E6D820203AC500D554F6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,6 +177,7 @@
 				C9D8B0F41F8093C60099956C /* carto */,
 				C9D8B1292014F5C00099956C /* grayscale_filter */,
 				C9F8E6A8201560DC00D554F6 /* random_walker */,
+				C9F8E6D620201AB000D554F6 /* ortools_tsp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -151,6 +190,8 @@
 				C9F8E6B32016290600D554F6 /* PerlinNoise.hpp */,
 				C9F8E69A2014FA0600D554F6 /* grayscale_filter.cpp */,
 				C9F8E6AF2015611400D554F6 /* random_walker.cpp */,
+				C9F8E6C22020175100D554F6 /* tsp.cpp */,
+				C9F8E6C32020175100D554F6 /* tsp.hpp */,
 				C9F8E6B02015611400D554F6 /* random_walker.hpp */,
 				C9F8E69B2014FA0600D554F6 /* grayscale_filter.hpp */,
 				C9D8B1192014F5370099956C /* tests */,
@@ -170,6 +211,7 @@
 				C9D8B111201435AB0099956C /* CartoNode.cpp */,
 				C9D8B112201435AB0099956C /* CartoNode.hpp */,
 				C9D8B115201436EF0099956C /* carto_includes.h */,
+				C9F8E6D920203AC600D554F6 /* libortools.dylib */,
 			);
 			path = carto;
 			sourceTree = "<group>";
@@ -180,6 +222,13 @@
 				C9F8E6AA201560DC00D554F6 /* main.cpp */,
 			);
 			path = random_walker;
+			sourceTree = "<group>";
+		};
+		C9F8E6D820203AC500D554F6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,6 +285,23 @@
 			productReference = C9F8E6A8201560DC00D554F6 /* random_walker */;
 			productType = "com.apple.product-type.tool";
 		};
+		C9F8E6C520201AB000D554F6 /* ortools_tsp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9F8E6D320201AB000D554F6 /* Build configuration list for PBXNativeTarget "ortools_tsp" */;
+			buildPhases = (
+				C9F8E6C620201AB000D554F6 /* Sources */,
+				C9F8E6CE20201AB000D554F6 /* Frameworks */,
+				C9F8E6D220201AB000D554F6 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ortools_tsp;
+			productName = carto;
+			productReference = C9F8E6D620201AB000D554F6 /* ortools_tsp */;
+			productType = "com.apple.product-type.tool";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -270,6 +336,7 @@
 				C9D8B0F31F8093C60099956C /* carto */,
 				C9D8B11A2014F5C00099956C /* grayscale_filter */,
 				C9F8E6A7201560DC00D554F6 /* random_walker */,
+				C9F8E6C520201AB000D554F6 /* ortools_tsp */,
 			);
 		};
 /* End PBXProject section */
@@ -280,7 +347,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F8E6B42016290600D554F6 /* PerlinNoise.cpp in Sources */,
-				C9D8B1102014347E0099956C /* CartoPath.cpp in Sources */,
+				C9F8E6DB2024B3C200D554F6 /* CartoPath.cpp in Sources */,
 				C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */,
 				C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */,
 				C9F8E6A12014FEC100D554F6 /* CartoImageProc.cpp in Sources */,
@@ -294,7 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F8E69D2014FB3800D554F6 /* grayscale_filter.cpp in Sources */,
-				C9D8B11C2014F5C00099956C /* CartoPath.cpp in Sources */,
+				C9F8E6DD2024B44300D554F6 /* CartoPath.cpp in Sources */,
 				C9D8B11D2014F5C00099956C /* CartoNode.cpp in Sources */,
 				C9F8E6B52016333800D554F6 /* PerlinNoise.cpp in Sources */,
 				C9F8E6A22014FEC100D554F6 /* CartoImageProc.cpp in Sources */,
@@ -310,6 +377,20 @@
 				C9F8E6B12015611400D554F6 /* random_walker.cpp in Sources */,
 				C9F8E6AB201560DC00D554F6 /* main.cpp in Sources */,
 				C9F8E6B62016333900D554F6 /* PerlinNoise.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9F8E6C620201AB000D554F6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9F8E6C720201AB000D554F6 /* PerlinNoise.cpp in Sources */,
+				C9F8E6C820201AB000D554F6 /* CartoPath.cpp in Sources */,
+				C9F8E6C920201AB000D554F6 /* CartoNode.cpp in Sources */,
+				C9F8E6CA20201AB000D554F6 /* CartoSimulator.cpp in Sources */,
+				C9F8E6CB20201AB000D554F6 /* CartoImageProc.cpp in Sources */,
+				C9F8E6CD20201AB000D554F6 /* CartoMoveTest.cpp in Sources */,
+				C9F8E6D720201AC100D554F6 /* tsp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,11 +492,15 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					/usr/local/lib,
 					/Users/matt/xcode/ann/lib,
+					.,
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
 					.,
+					"/Users/matt/xcode/or-tools-6.4",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
@@ -426,6 +511,7 @@
 				OTHER_LDFLAGS = (
 					"-v",
 					"-lANN",
+					"-lortools",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -443,6 +529,9 @@
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
 					.,
+					"/Users/matt/xcode/or-tools-6.4",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
@@ -453,6 +542,7 @@
 				OTHER_LDFLAGS = (
 					"-v",
 					"-lANN",
+					"-lortools",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -466,17 +556,22 @@
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
 					.,
-					"-I/usr/local/Cellar/nlohmann_json/3.0.1/include",
+					/usr/local/Cellar/nlohmann_json/3.0.1/include,
+					"/Users/matt/xcode/or-tools-6.4/ortools/",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
+					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-v",
 					"-lANN",
+					"-lortools",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -494,17 +589,22 @@
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
 					.,
-					"-I/usr/local/Cellar/nlohmann_json/3.0.1/include",
+					/usr/local/Cellar/nlohmann_json/3.0.1/include,
+					"/Users/matt/xcode/or-tools-6.4/ortools/",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
+					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-v",
 					"-lANN",
+					"-lortools",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -521,6 +621,74 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C9F8E6D420201AB000D554F6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					/usr/local/lib,
+					/Users/matt/xcode/ann/lib,
+					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/Users/matt/xcode/ann/include,
+					.,
+					"/Users/matt/xcode/or-tools-6.4",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
+					"$(PROJECT_DIR)/carto",
+					/Users/matt/xcode/ann/lib,
+					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-v",
+					"-lANN",
+					"-lortools",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
+			};
+			name = Debug;
+		};
+		C9F8E6D520201AB000D554F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					/usr/local/lib,
+					/Users/matt/xcode/ann/lib,
+					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
+				);
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/Users/matt/xcode/ann/include,
+					.,
+					"/Users/matt/xcode/or-tools-6.4",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
+					"$(PROJECT_DIR)/carto",
+					/Users/matt/xcode/ann/lib,
+					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
+				);
+				OTHER_LDFLAGS = (
+					"-v",
+					"-lANN",
+					"-lortools",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -561,6 +729,15 @@
 				C9F8E6AE201560DC00D554F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+		};
+		C9F8E6D320201AB000D554F6 /* Build configuration list for PBXNativeTarget "ortools_tsp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9F8E6D420201AB000D554F6 /* Debug */,
+				C9F8E6D520201AB000D554F6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
