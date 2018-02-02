@@ -41,6 +41,7 @@ public:
     cv::Mat filterGrayscale(int start, int end);
     void filterGrayscale(cv::Mat *inmat, int start, int end);
     void filterPerlin(cv::Mat *inmat, double scale);
+    void buildTSPath(cv::Mat *inmat);
     void buildPath(cv::Mat *inmat);
     void renderPath(std::vector<CartoNode::CartoNode>, cv::Mat *inmat, cv::Point start_point);
     void toGrayscale();

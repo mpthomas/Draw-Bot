@@ -101,6 +101,31 @@ namespace Carto {
         imshow(name,mat);
     }
     
+    void CartoImageProc::buildTSPath(Mat *inmat) {
+        int size=0;
+        std::vector<Point> path;
+        
+        for(int i=0; i != inmat->rows; i++){
+            for(int j=0; j != inmat->cols; j++){
+                int pixel = inmat->at<uchar>(i,j);
+                if(pixel < 255) {
+                    size++;
+                }
+            }
+        }
+        
+        CartoPath *cp = new CartoPath(size);
+        cp->detected_edges=inmat->clone();
+        cp->buildTSP(&path);
+        
+        Point from=Point(0,0);
+        
+        for(int i=0;i<path.size();i++) {
+            line(*inmat,from,path[i],Scalar(200,200,200),1,8);
+            from=path[i];
+        }
+    }
+    
     void CartoImageProc::buildPath(Mat *inmat) {
         CartoPath *path = new CartoPath();
         std::vector<CartoNode> annPath;

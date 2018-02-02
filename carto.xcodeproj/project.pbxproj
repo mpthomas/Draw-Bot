@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C938CE572024C15E00F2D28D /* tsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6C22020175100D554F6 /* tsp.cpp */; };
+		C938CE5B2024C1ED00F2D28D /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
+		C938CE5C2024C20200F2D28D /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
+		C938CE5D2024C20900F2D28D /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C9D8B1011F80A9E40099956C /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
 		C9D8B1021F80A9E40099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
 		C9D8B1031F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
@@ -29,7 +33,6 @@
 		C9F8E6B52016333800D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
 		C9F8E6B62016333900D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
 		C9F8E6C720201AB000D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
-		C9F8E6C820201AB000D554F6 /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C9F8E6C920201AB000D554F6 /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
 		C9F8E6CA20201AB000D554F6 /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
 		C9F8E6CB20201AB000D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
@@ -37,10 +40,7 @@
 		C9F8E6CF20201AB000D554F6 /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
 		C9F8E6D020201AB000D554F6 /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
 		C9F8E6D120201AB000D554F6 /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
-		C9F8E6D720201AC100D554F6 /* tsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6C22020175100D554F6 /* tsp.cpp */; };
 		C9F8E6DA20203AC600D554F6 /* libortools.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F8E6D920203AC600D554F6 /* libortools.dylib */; };
-		C9F8E6DB2024B3C200D554F6 /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
-		C9F8E6DD2024B44300D554F6 /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C9F8E6DE2024B4BA00D554F6 /* libortools.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F8E6D920203AC600D554F6 /* libortools.dylib */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C938CE5F2024E57300F2D28D /* google_tsp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = google_tsp.cpp; sourceTree = "<group>"; };
 		C9D8B0F41F8093C60099956C /* carto */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = carto; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D8B0F71F8093C60099956C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.2.4.13.dylib; sourceTree = "<group>"; };
@@ -191,6 +192,7 @@
 				C9F8E69A2014FA0600D554F6 /* grayscale_filter.cpp */,
 				C9F8E6AF2015611400D554F6 /* random_walker.cpp */,
 				C9F8E6C22020175100D554F6 /* tsp.cpp */,
+				C938CE5F2024E57300F2D28D /* google_tsp.cpp */,
 				C9F8E6C32020175100D554F6 /* tsp.hpp */,
 				C9F8E6B02015611400D554F6 /* random_walker.hpp */,
 				C9F8E69B2014FA0600D554F6 /* grayscale_filter.hpp */,
@@ -347,7 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F8E6B42016290600D554F6 /* PerlinNoise.cpp in Sources */,
-				C9F8E6DB2024B3C200D554F6 /* CartoPath.cpp in Sources */,
+				C938CE5D2024C20900F2D28D /* CartoPath.cpp in Sources */,
 				C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */,
 				C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */,
 				C9F8E6A12014FEC100D554F6 /* CartoImageProc.cpp in Sources */,
@@ -361,7 +363,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F8E69D2014FB3800D554F6 /* grayscale_filter.cpp in Sources */,
-				C9F8E6DD2024B44300D554F6 /* CartoPath.cpp in Sources */,
+				C938CE5C2024C20200F2D28D /* CartoPath.cpp in Sources */,
 				C9D8B11D2014F5C00099956C /* CartoNode.cpp in Sources */,
 				C9F8E6B52016333800D554F6 /* PerlinNoise.cpp in Sources */,
 				C9F8E6A22014FEC100D554F6 /* CartoImageProc.cpp in Sources */,
@@ -385,12 +387,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F8E6C720201AB000D554F6 /* PerlinNoise.cpp in Sources */,
-				C9F8E6C820201AB000D554F6 /* CartoPath.cpp in Sources */,
+				C938CE5B2024C1ED00F2D28D /* CartoPath.cpp in Sources */,
 				C9F8E6C920201AB000D554F6 /* CartoNode.cpp in Sources */,
 				C9F8E6CA20201AB000D554F6 /* CartoSimulator.cpp in Sources */,
+				C938CE572024C15E00F2D28D /* tsp.cpp in Sources */,
 				C9F8E6CB20201AB000D554F6 /* CartoImageProc.cpp in Sources */,
 				C9F8E6CD20201AB000D554F6 /* CartoMoveTest.cpp in Sources */,
-				C9F8E6D720201AC100D554F6 /* tsp.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +440,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/Users/matt/xcode/ann/include,
+					.,
+					/usr/local/Cellar/nlohmann_json/3.0.1/include,
+					"/Users/matt/xcode/or-tools-6.4/ortools/",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -480,6 +491,15 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					/usr/local/include,
+					/Users/matt/xcode/ann/include,
+					.,
+					/usr/local/Cellar/nlohmann_json/3.0.1/include,
+					"/Users/matt/xcode/or-tools-6.4/ortools/",
+					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
+					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
@@ -493,6 +513,7 @@
 					/usr/local/lib,
 					/Users/matt/xcode/ann/lib,
 					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
@@ -507,6 +528,7 @@
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-v",
@@ -524,6 +546,7 @@
 					/usr/local/lib,
 					/Users/matt/xcode/ann/lib,
 					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
 				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
@@ -538,6 +561,7 @@
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
+					"/Users/matt/xcode/or-tools-6.4/lib",
 				);
 				OTHER_LDFLAGS = (
 					"-v",
@@ -551,13 +575,17 @@
 		C9D8B1272014F5C00099956C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = /Users/matt/xcode/ann/lib;
+				FRAMEWORK_SEARCH_PATHS = (
+					/usr/local/lib,
+					/Users/matt/xcode/ann/lib,
+					.,
+				);
 				HEADER_SEARCH_PATHS = (
 					/usr/local/include,
 					/Users/matt/xcode/ann/include,
 					.,
 					/usr/local/Cellar/nlohmann_json/3.0.1/include,
-					"/Users/matt/xcode/or-tools-6.4/ortools/",
+					"/Users/matt/xcode/or-tools-6.4",
 					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
 				);
@@ -590,7 +618,7 @@
 					/Users/matt/xcode/ann/include,
 					.,
 					/usr/local/Cellar/nlohmann_json/3.0.1/include,
-					"/Users/matt/xcode/or-tools-6.4/ortools/",
+					"/Users/matt/xcode/or-tools-6.4",
 					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
 				);
@@ -729,6 +757,7 @@
 				C9F8E6AE201560DC00D554F6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C9F8E6D320201AB000D554F6 /* Build configuration list for PBXNativeTarget "ortools_tsp" */ = {
 			isa = XCConfigurationList;
