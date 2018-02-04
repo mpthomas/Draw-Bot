@@ -41,14 +41,16 @@ CartoPath::~CartoPath() {}
     void CartoPath::buildTSP(std::vector<Point> *path) {
         std::vector<Point> parr;
         path->clear();
+        parr.clear();
         
         this->matrix_.reset(new int64[size_ * size_]);
         
-        for(int i=0; i != this->detected_edges.rows; i++){
-            for(int j=0; j != this->detected_edges.cols; j++){
-                int pixel = this->detected_edges.at<uchar>(i,j);
+        for(int i=0; i < this->detected_edges.cols; i++){
+            for(int j=0; j < this->detected_edges.rows; j++){
+                int pixel = this->detected_edges.at<uchar>(Point(i,j));
                 if(pixel < 255) {
                     parr.push_back(Point(i,j));
+                    std::cout << "Point: " << Point(i,j) << "Pixel: " << pixel << std::endl;
                 }
             }
         }
@@ -58,6 +60,8 @@ CartoPath::~CartoPath() {}
         
         for (RoutingModel::NodeIndex from = RoutingModel::kFirstNode; from < size_;
              ++from) {
+            j=0;
+            
             for (RoutingModel::NodeIndex to = RoutingModel::kFirstNode; to < size_;
                  ++to) {
                 if (to != from) {
@@ -75,6 +79,8 @@ CartoPath::~CartoPath() {}
         // Setting first solution heuristic (cheapest addition).
         parameters.set_first_solution_strategy(
                                                FirstSolutionStrategy::PATH_CHEAPEST_ARC);
+        parameters.set_solution_limit(5);
+        
         routing.SetArcCostEvaluatorOfAllVehicles(NewPermanentCallback(this, &CartoPath::tspDistance));
         
         const Assignment* solution = routing.SolveWithParameters(parameters);
@@ -108,7 +114,7 @@ CartoPath::~CartoPath() {}
     }
     
     void CartoPath::buildANNPath(std::vector<Carto::CartoNode> *path){
-    int i=0, j=0, acc=0, dim = 2, k=1, eps=0;
+    int i=0, j=0, acc=0, dim = 2, k=2, eps=0;
     int nPts=0;              // actual number of data points
     ANNpointArray dataPts; // data points
     ANNpoint queryPt;      // query point

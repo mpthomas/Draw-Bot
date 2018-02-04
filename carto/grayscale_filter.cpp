@@ -1,11 +1,3 @@
-//
-//  grayscale_filter.cpp
-//  carto
-//
-//  Created by Matthew Thomas on 1/21/18.
-//  Copyright © 2018 Matthew Thomas. All rights reserved.
-//
-
 #include <stdlib.h>
 #include <iostream>
 #include <string>
@@ -31,7 +23,7 @@ int ends[] = {255,255,255};
 int perlin_scales[] = {25,25,25};
 int curr_window=0;
 int perlin_scale=25;
-Mat imgmat1, imgmat2, imgmat3, imgmat4 ,canny, preview;
+Mat imgmat1, imgmat2, imgmat3, imgmat4 ,canny, preview, preview_tsp;
 Mat window_img[3], edges[3];
 
 CartoImageProc *img;
@@ -42,40 +34,10 @@ CartoImageProc *procs[3] = {new CartoImageProc("/Users/matt/xcode/Cartogrifer/ca
 
 void refresh(int pos, void *userData);
 int main( int argc, char** argv ){
+    std::cout << cv::getBuildInformation() << std::endl;
     img=new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg");
     img->toGrayscale();
-    /*
-    imgmat1 = img->mat.clone();
-    imgmat2 = img->mat.clone();
-    imgmat3 = img->mat.clone();
-    imgmat4 = img->mat.clone();
-    
-    img->filterGrayscale(&imgmat1,0,150);
-    img->filterPerlin(&imgmat1,(double)perlin_scale/100);
-    canny=imgmat1.clone();
-    Canny(canny,canny,1,3,3);
-    
-    bitwise_not(canny,canny); // reverse black/white
-    img->show(canny,"Scratch");
-    
-    img->show(imgmat1,"0 to 150");
-    
-    img->filterGrayscale(&imgmat2,151,200);
-    img->show(imgmat1,"151 to 200");
-    moveWindow("151 to 200",imgmat2.cols,0);
-    
-    img->filterGrayscale(&imgmat3,200,255);
-    img->show(imgmat3,"200 to 255");
-    moveWindow("200 to 255",0,imgmat3.rows+50);
-    
-    img->filterGrayscale(&imgmat4,151,255);
-    img->show(imgmat4,"151 to 255");
-    moveWindow("151 to 255",imgmat4.cols,imgmat4.rows);
-    
-    createTrackbar("Start","0 to 150",&start, 50, refresh);
-    createTrackbar("End","0 to 150",&end, 200, refresh);
-    createTrackbar("Perlin","0 to 150",&perlin_scale, 100, refresh);
-    */
+
     procs[0]->toGrayscale();
     procs[1]->toGrayscale();
     procs[2]->toGrayscale();
@@ -120,9 +82,9 @@ void init_window(int win_number) {
     
     p->filterGrayscale(i,starts[window_number],ends[window_number]);
     
-    if(p->id == 0) {
+    //if(p->id == 0) {
         p->filterPerlin(i,(double)perlin_scales[window_number]/100);
-    }
+    //}
     
     edges[window_number]=i->clone();
     Canny(edges[window_number],edges[window_number],1,3,3);
@@ -136,6 +98,8 @@ void init_window(int win_number) {
         createTrackbar("Start",window_name,&starts[window_number],255,refresh_window,(void *)&p->id);
         createTrackbar("End",window_name,&ends[window_number],255,refresh_window,&p->id);
         createTrackbar("Perlin",window_name,&perlin_scales[window_number],100,refresh_window,(void *)&p->id);
+        //createButton("Save", refresh_window);
+        //createButton("Save Copy", refresh_window);
     }
 }
 
@@ -145,6 +109,7 @@ void refresh_window(int pos, void *userdata) {
     
     int num=*window;
     init_window(num);
+    
     return;
 }
 
@@ -162,6 +127,15 @@ void refresh_preview() {
 void refresh_path() {
     img->buildPath(&preview);
     img->show(preview,"Path");
+    
+    /* TSP 
+     preview_tsp=edges[1].clone();
+     edges[1].copyTo(preview_tsp);
+     img->buildTSPath(&preview_tsp);
+     //img->show(preview,"Path");
+     img->show(preview_tsp,"TSP Path");
+     
+     */
 }
 
 void decrement_preview(Mat *edges, Mat *preview, uchar amount){

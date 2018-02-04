@@ -1,10 +1,3 @@
-//
-//  CartoImageProc.cpp
-//  carto
-//
-//  Created by Matthew Thomas on 1/21/18.
-//  Copyright © 2018 Matthew Thomas. All rights reserved.
-//
 
 #include "CartoImageProc.hpp"
 #include <iostream>
@@ -97,32 +90,103 @@ namespace Carto {
     }
     
     void CartoImageProc::show(Mat mat, std::string name) {
-        namedWindow(name);
+        namedWindow(name,CV_GUI_EXPANDED);
         imshow(name,mat);
+    }
+    
+    void CartoImageProc::createMask(Mat *inmat, Mat *mask, int start_x, int len_x, int start_y, int len_y) {
+        *mask=Scalar::all(0);
+        
+        Rect roi = Rect(start_x, start_y, len_x, len_y);
+        Mat crop(*inmat, roi);
+        crop.copyTo(*mask);
+        
+        /*for(int x=start_x; x<= len_x; x++) {
+            for(int y=start_y; y<=len_y; y++){
+                if(x < inmat->cols && x < inmat->rows){
+                    mask->at<uchar>(Point(mask_x,mask_y))=255;
+                }
+                mask_y++;
+            }
+            mask_x++;
+        }
+         */
     }
     
     void CartoImageProc::buildTSPath(Mat *inmat) {
         int size=0;
-        std::vector<Point> path;
+        int base_block_size=25;
+        int x_block_size=0;
+        int y_block_size=0;
+        int limit=100;
+        int inmat_xmax=0;
+        int inmat_ymax=0;
+        int xctr=0;
+        int yctr=0;
+        CartoPath *cp;
         
-        for(int i=0; i != inmat->rows; i++){
-            for(int j=0; j != inmat->cols; j++){
-                int pixel = inmat->at<uchar>(i,j);
-                if(pixel < 255) {
-                    size++;
-                }
-            }
-        }
+        Mat mask=inmat->clone();
+        Mat tmp;
+        mask=Scalar::all(255);
         
-        CartoPath *cp = new CartoPath(size);
-        cp->detected_edges=inmat->clone();
-        cp->buildTSP(&path);
+        inmat_xmax=inmat->cols; inmat_ymax=inmat->rows;
         
+        std::vector<Point> path, finalpath;
         Point from=Point(0,0);
+        // go top left to bottom right
+        // TODO: clean up
+        do {
+            xctr=0;
+            
+            if(yctr+y_block_size > inmat_ymax)
+                y_block_size=inmat_ymax-yctr;
+            else
+                y_block_size=base_block_size;
+            
+            do{
+                if(xctr+x_block_size > inmat_xmax)
+                    x_block_size=inmat_xmax-xctr;
+                else
+                    x_block_size=base_block_size;
+                
+                this->createMask(inmat, &mask, xctr, x_block_size, yctr, y_block_size);
+           /*
+                inmat->copyTo(tmp,mask);
+             */
+                for(int i=0; i<mask.cols; i++) {
+                    for(int j=0; j < mask.rows; j++){
+                        if(mask.at<uchar>(Point(i,j)) < 255) {
+                            size++;
+                        }
+                    }
+                }
+                
+                if(size > 1 && size < base_block_size*base_block_size) {
+                    std::cout << "Start x: " << xctr << " Start y: " << yctr << " Size: " << size << std::endl;
+                    
+                    cp = new CartoPath(size);
+                    cp->detected_edges=mask;
+                    cp->buildTSP(&path);
+                    
+                    for(int i=0;i<path.size();i++) {
+                        path[i]=path[i]+Point(xctr,yctr);
+                        line(*inmat,from,path[i],Scalar(200,200,200),1,8);
+                        from=path[i];
+                    }
+                    this->show(*inmat,"TSP Path");
+                    finalpath.insert(finalpath.end(), path.begin(), path.end());
+                    path.clear();
+                    return;
+                }
+                xctr+=x_block_size;
+                size=0;
+            } while(xctr != inmat_xmax);
+            yctr+=y_block_size;
+        } while(yctr != inmat_ymax);
         
-        for(int i=0;i<path.size();i++) {
-            line(*inmat,from,path[i],Scalar(200,200,200),1,8);
-            from=path[i];
+        for(int i=0;i<finalpath.size();i++) {
+           // line(*inmat,from,finalpath[i],Scalar(200,200,200),1,8);
+            from=finalpath[i];
         }
     }
     

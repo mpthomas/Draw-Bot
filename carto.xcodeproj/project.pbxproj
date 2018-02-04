@@ -85,6 +85,7 @@
 
 /* Begin PBXFileReference section */
 		C938CE5F2024E57300F2D28D /* google_tsp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = google_tsp.cpp; sourceTree = "<group>"; };
+		C938CE6420267A9D00F2D28D /* fileDialog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = fileDialog.mm; sourceTree = "<group>"; };
 		C9D8B0F41F8093C60099956C /* carto */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = carto; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D8B0F71F8093C60099956C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.2.4.13.dylib; sourceTree = "<group>"; };
@@ -186,6 +187,7 @@
 		C9D8B0F61F8093C60099956C /* carto */ = {
 			isa = PBXGroup;
 			children = (
+				C938CE6420267A9D00F2D28D /* fileDialog.mm */,
 				C9F8E6A3201522EB00D554F6 /* img.jpg */,
 				C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */,
 				C9F8E6B32016290600D554F6 /* PerlinNoise.hpp */,
@@ -600,6 +602,10 @@
 					"-v",
 					"-lANN",
 					"-lortools",
+					"-framework",
+					Cocoa,
+					"-framework",
+					Carbon,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -633,6 +639,10 @@
 					"-v",
 					"-lANN",
 					"-lortools",
+					"-framework",
+					Cocoa,
+					"-framework",
+					Carbon,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
