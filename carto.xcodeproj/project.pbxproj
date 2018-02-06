@@ -27,7 +27,6 @@
 		C9F8E69E2014FE1800D554F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B0F71F8093C60099956C /* main.cpp */; };
 		C9F8E6A12014FEC100D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
 		C9F8E6A22014FEC100D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
-		C9F8E6AB201560DC00D554F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6AA201560DC00D554F6 /* main.cpp */; };
 		C9F8E6B12015611400D554F6 /* random_walker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6AF2015611400D554F6 /* random_walker.cpp */; };
 		C9F8E6B42016290600D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
 		C9F8E6B52016333800D554F6 /* PerlinNoise.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */; };
@@ -111,7 +110,6 @@
 		C9F8E6A02014FEC100D554F6 /* CartoImageProc.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoImageProc.hpp; sourceTree = "<group>"; };
 		C9F8E6A3201522EB00D554F6 /* img.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = img.jpg; path = carto/img.jpg; sourceTree = SOURCE_ROOT; };
 		C9F8E6A8201560DC00D554F6 /* random_walker */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = random_walker; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9F8E6AA201560DC00D554F6 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C9F8E6AF2015611400D554F6 /* random_walker.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = random_walker.cpp; sourceTree = "<group>"; };
 		C9F8E6B02015611400D554F6 /* random_walker.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = random_walker.hpp; sourceTree = "<group>"; };
 		C9F8E6B22016290600D554F6 /* PerlinNoise.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PerlinNoise.cpp; sourceTree = "<group>"; };
@@ -171,7 +169,6 @@
 				C9D4CFE8202951C1005379BB /* .gitignore */,
 				C9DF5CAE20293D6F002F0F17 /* .gitattributes */,
 				C9D8B0F61F8093C60099956C /* carto */,
-				C9F8E6A9201560DC00D554F6 /* random_walker */,
 				C9D8B0F51F8093C60099956C /* Products */,
 				C9F8E6D820203AC500D554F6 /* Frameworks */,
 			);
@@ -222,14 +219,6 @@
 				C9F8E6D920203AC600D554F6 /* libortools.dylib */,
 			);
 			path = carto;
-			sourceTree = "<group>";
-		};
-		C9F8E6A9201560DC00D554F6 /* random_walker */ = {
-			isa = PBXGroup;
-			children = (
-				C9F8E6AA201560DC00D554F6 /* main.cpp */,
-			);
-			path = random_walker;
 			sourceTree = "<group>";
 		};
 		C9F8E6D820203AC500D554F6 /* Frameworks */ = {
@@ -383,7 +372,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F8E6B12015611400D554F6 /* random_walker.cpp in Sources */,
-				C9F8E6AB201560DC00D554F6 /* main.cpp in Sources */,
 				C9F8E6B62016333900D554F6 /* PerlinNoise.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
