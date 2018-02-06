@@ -86,6 +86,7 @@
 /* Begin PBXFileReference section */
 		C938CE5F2024E57300F2D28D /* google_tsp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = google_tsp.cpp; sourceTree = "<group>"; };
 		C938CE6420267A9D00F2D28D /* fileDialog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = fileDialog.mm; sourceTree = "<group>"; };
+		C9D4CFE8202951C1005379BB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C9D8B0F41F8093C60099956C /* carto */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = carto; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D8B0F71F8093C60099956C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.2.4.13.dylib; sourceTree = "<group>"; };
@@ -167,6 +168,7 @@
 		C9D8B0EB1F8093C60099956C = {
 			isa = PBXGroup;
 			children = (
+				C9D4CFE8202951C1005379BB /* .gitignore */,
 				C9DF5CAE20293D6F002F0F17 /* .gitattributes */,
 				C9D8B0F61F8093C60099956C /* carto */,
 				C9F8E6A9201560DC00D554F6 /* random_walker */,
