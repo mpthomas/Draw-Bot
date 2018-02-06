@@ -103,6 +103,7 @@
 		C9D8B115201436EF0099956C /* carto_includes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = carto_includes.h; sourceTree = "<group>"; };
 		C9D8B1192014F5370099956C /* tests */ = {isa = PBXFileReference; lastKnownFileType = folder; path = tests; sourceTree = "<group>"; };
 		C9D8B1292014F5C00099956C /* grayscale_filter */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = grayscale_filter; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9DF5CAE20293D6F002F0F17 /* .gitattributes */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
 		C9F8E69A2014FA0600D554F6 /* grayscale_filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = grayscale_filter.cpp; sourceTree = "<group>"; };
 		C9F8E69B2014FA0600D554F6 /* grayscale_filter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = grayscale_filter.hpp; sourceTree = "<group>"; };
 		C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoImageProc.cpp; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		C9D8B0EB1F8093C60099956C = {
 			isa = PBXGroup;
 			children = (
+				C9DF5CAE20293D6F002F0F17 /* .gitattributes */,
 				C9D8B0F61F8093C60099956C /* carto */,
 				C9F8E6A9201560DC00D554F6 /* random_walker */,
 				C9D8B0F51F8093C60099956C /* Products */,
