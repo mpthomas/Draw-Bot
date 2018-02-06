@@ -98,8 +98,8 @@ void init_window(int win_number) {
         createTrackbar("Start",window_name,&starts[window_number],255,refresh_window,(void *)&p->id);
         createTrackbar("End",window_name,&ends[window_number],255,refresh_window,&p->id);
         createTrackbar("Perlin",window_name,&perlin_scales[window_number],100,refresh_window,(void *)&p->id);
-        //createButton("Save", refresh_window);
-        //createButton("Save Copy", refresh_window);
+        createButton("Save", refresh_window);
+        createButton("Save Copy", refresh_window);
     }
 }
 
