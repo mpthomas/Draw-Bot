@@ -6,9 +6,11 @@
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "PerlinNoise.hpp"
+#include "json.hpp"
 
 using namespace Carto;
 using namespace cv;
+using json = nlohmann::json;
 
 void refresh_window(int pos, void *userData);
 void init_window(int window_number);
@@ -16,8 +18,11 @@ void refresh_preview();
 void refresh_path();
 void decrement_preview(Mat *edges, Mat *preview, uchar amount);
 void waitLoop();
+void save(void *userdata);
+void load(void *userdata);
+void init_control_panel();
 
-int start = 0, end = 150;
+int start = 0, end = 150, total_layers=2;
 int starts[]= {1,1,1}; // Leave at 1 to pass getTrackbarPos test
 int ends[] = {255,255,255};
 int perlin_scales[] = {25,25,25};
@@ -42,8 +47,11 @@ int main( int argc, char** argv ){
     procs[1]->toGrayscale();
     procs[2]->toGrayscale();
     
-    init_window((int)0);
-    init_window((int)1);
+    for(int i=0;i<total_layers;i++) {
+        init_window((int)i);
+    }
+    
+    init_control_panel();
 
     waitLoop();
 }
@@ -98,8 +106,6 @@ void init_window(int win_number) {
         createTrackbar("Start",window_name,&starts[window_number],255,refresh_window,(void *)&p->id);
         createTrackbar("End",window_name,&ends[window_number],255,refresh_window,&p->id);
         createTrackbar("Perlin",window_name,&perlin_scales[window_number],100,refresh_window,(void *)&p->id);
-        createButton("Save", refresh_window);
-        createButton("Save Copy", refresh_window);
     }
 }
 
@@ -111,6 +117,69 @@ void refresh_window(int pos, void *userdata) {
     init_window(num);
     
     return;
+}
+
+void save(void *userdata) {
+    json j;
+    std::string file = procs[0]->image_name;
+    int start,end,perlin;
+    
+    std::ifstream in("/tmp/save.json");
+    
+    if(in.good()) {
+        in >> j;
+    }
+    
+    in.close();
+    
+    for(int i=0; i<total_layers; i++) {
+        string window_name="Step ";
+        window_name.append(std::to_string(i));
+        start=getTrackbarPos("Start", window_name);
+        end=getTrackbarPos("End", window_name);
+        perlin=getTrackbarPos("Perlin", window_name);
+        j[file]["windows"][i]["name"]=window_name;
+        j[file]["windows"][i]["trackbars"]= {
+            { "Start", start },
+            { "End", end },
+            { "Perlin", perlin }
+        };
+    }
+    
+    std::ofstream out("/tmp/save.json");
+    out << std::setw(4) << j << std::endl;
+    out.close();
+}
+
+void load(void *userdata) {
+    json j;
+    std::string file=procs[0]->image_name;
+    
+    std::ifstream in("/tmp/save.json");
+    
+    if(in.good()) {
+        in >> j;
+        in.close();
+    }else{
+        in.close();
+        return;
+    }
+    
+    for(int i=0; i < j[file]["windows"].size(); i++) {
+        std::string window_name=j[file]["windows"][i]["name"].get<std::string>();
+        //for(int k=0; k < j[file]["windows"][i]["trackbars"].size(); k++){
+            //json o = j[file]["windows"][i]["trackbars"][k];
+            
+            for(json::iterator it = j[file]["windows"][i]["trackbars"].begin(); it != j[file]["windows"][i]["trackbars"].end(); ++it){
+                setTrackbarPos(it.key(), window_name, it.value());
+           }
+        //}
+    }
+}
+
+void init_control_panel() {
+    createButton("Save", (ButtonCallback)save);
+    createButton("Load", (ButtonCallback)load);
 }
 
 void refresh_preview() {

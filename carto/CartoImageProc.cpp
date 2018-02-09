@@ -90,7 +90,7 @@ namespace Carto {
     }
     
     void CartoImageProc::show(Mat mat, std::string name) {
-        namedWindow(name,CV_GUI_EXPANDED);
+        namedWindow(name,CV_GUI_EXPANDED | CV_WINDOW_AUTOSIZE);
         imshow(name,mat);
     }
     

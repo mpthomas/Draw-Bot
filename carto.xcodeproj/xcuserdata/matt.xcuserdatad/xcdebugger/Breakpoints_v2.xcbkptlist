@@ -190,11 +190,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "carto/grayscale_filter.cpp"
-            timestampString = "539406068.32856"
+            timestampString = "539843890.911037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
             landmarkName = "init_window(int win_number)"
             landmarkType = "9">
          </BreakpointContent>
@@ -206,11 +206,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "carto/grayscale_filter.cpp"
-            timestampString = "539406068.32856"
+            timestampString = "539843890.911037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
             landmarkName = "init_window(int win_number)"
             landmarkType = "9">
          </BreakpointContent>
@@ -222,11 +222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "carto/grayscale_filter.cpp"
-            timestampString = "539406068.32856"
+            timestampString = "539843890.911037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
             landmarkName = "init_window(int win_number)"
             landmarkType = "9">
          </BreakpointContent>
@@ -238,11 +238,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "carto/grayscale_filter.cpp"
-            timestampString = "539404982.57767"
+            timestampString = "539843890.911037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24">
+            startingLineNumber = "27"
+            endingLineNumber = "27">
             <Locations>
                <Location
                   shouldBeEnabled = "No"
@@ -329,11 +329,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "carto/grayscale_filter.cpp"
-            timestampString = "539406068.32856"
+            timestampString = "539843890.911037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "111"
-            endingLineNumber = "111"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "refresh_window(int pos, void *userdata)"
             landmarkType = "9">
          </BreakpointContent>
@@ -597,12 +597,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "carto/grayscale_filter.cpp"
-            timestampString = "539406068.32856"
+            timestampString = "539843890.911037"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "refresh_path()"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "refresh_preview()"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "carto/grayscale_filter.cpp"
+            timestampString = "539843890.911037"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
+            landmarkName = "save(void *userdata)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
