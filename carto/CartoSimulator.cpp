@@ -155,10 +155,12 @@ int CartoSimulatorLine::getEdist(Point p) {
 /************************/
 
 CartoSimulator::CartoSimulator(Mat *cvMat) {
-    int max_x = cvMat->cols;
-    int max_y = cvMat->rows;
+    //int max_x = cvMat->cols;
+    //int max_y = cvMat->rows;
+    int max_x = 125 * 40;
+    
     this->canvas=cvMat;
-    this->prev_point=Point(0,0);
+    this->prev_point=Point(12*125, 6*125);
     
     std::ofstream arduino;
     if(!arduino.is_open()) {
@@ -166,10 +168,10 @@ CartoSimulator::CartoSimulator(Mat *cvMat) {
     }
     arduino.close();
     
-    this->line1=new CartoSimulatorLine(Point(0,0), Point(max_x/2, max_y/2));
+    this->line1=new CartoSimulatorLine(Point(0,0), this->prev_point);
     this->line1->setMotorNumber(0);
     
-    this->line2=new CartoSimulatorLine(Point(max_x,0), Point(max_x/2, max_y/2));
+    this->line2=new CartoSimulatorLine(Point(max_x,0), this->prev_point);
     this->line2->setMotorNumber(1);
 }
 
@@ -178,6 +180,8 @@ CartoSimulator::~CartoSimulator() {}
 
 void CartoSimulator::MoveToPoint(Point p, int steps=5){
     Point intersection;
+    p.x = p.x + (12*125);
+    p.y = p.y + (6*125);
     this->line1->SetTarget(p,steps);
     this->line2->SetTarget(p,steps);
     CartoMoveTest test;
