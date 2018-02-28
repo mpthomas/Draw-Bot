@@ -33,16 +33,23 @@ Mat window_img[3], edges[3];
 
 CartoImageProc *img;
 
-CartoImageProc *procs[3] = {new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg",0),
+/*CartoImageProc *procs[3] = {new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg",0),
                            new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg",1),
                            new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg",2)};
+*/
+CartoImageProc *procs[3];
 
 void refresh(int pos, void *userData);
 int main( int argc, char** argv ){
     std::cout << cv::getBuildInformation() << std::endl;
-    img=new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg");
+    //img=new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg");
+    img=new CartoImageProc(argv[1]);
     img->toGrayscale();
-
+    
+    procs[0] = new CartoImageProc(argv[1], 0);
+    procs[1] = new CartoImageProc(argv[1], 1);
+    procs[2] = new CartoImageProc(argv[1], 2);
+    
     procs[0]->toGrayscale();
     procs[1]->toGrayscale();
     procs[2]->toGrayscale();
