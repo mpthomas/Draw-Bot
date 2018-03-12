@@ -35,11 +35,6 @@ Mat imgmat1, imgmat2, imgmat3, imgmat4 ,canny, preview, preview_tsp;
 Mat window_img[3], edges[3];
 
 CartoImageProc *img;
-
-/*CartoImageProc *procs[3] = {new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg",0),
-                           new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg",1),
-                           new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg",2)};
-*/
 CartoImageProc *procs[3];
 
 void refresh(int pos, void *userData);
