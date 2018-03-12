@@ -54,11 +54,7 @@ namespace Carto {
     }
 
     void CartoImageProc::filterPerlin(cv::Mat *inmat, double scale){
-        //Mat tmp = Mat::zeros(inmat->rows, inmat->cols, CV_8UC3);
-        //tmp=Scalar::all(255);
-        
         Mat perlin = CreatePerlinNoiseImage(Size(inmat->cols,inmat->rows),scale);
-        //imshow("151 to 200",perlin);
         uchar inmat_val, perlin_val;
         
         for(int x=0; x<inmat->cols; x++){
@@ -100,17 +96,6 @@ namespace Carto {
         Rect roi = Rect(start_x, start_y, len_x, len_y);
         Mat crop(*inmat, roi);
         crop.copyTo(*mask);
-        
-        /*for(int x=start_x; x<= len_x; x++) {
-            for(int y=start_y; y<=len_y; y++){
-                if(x < inmat->cols && x < inmat->rows){
-                    mask->at<uchar>(Point(mask_x,mask_y))=255;
-                }
-                mask_y++;
-            }
-            mask_x++;
-        }
-         */
     }
     
     void CartoImageProc::buildTSPath(Mat *inmat) {
@@ -118,7 +103,6 @@ namespace Carto {
         int base_block_size=25;
         int x_block_size=0;
         int y_block_size=0;
-        int limit=100;
         int inmat_xmax=0;
         int inmat_ymax=0;
         int xctr=0;
@@ -150,9 +134,7 @@ namespace Carto {
                     x_block_size=base_block_size;
                 
                 this->createMask(inmat, &mask, xctr, x_block_size, yctr, y_block_size);
-           /*
-                inmat->copyTo(tmp,mask);
-             */
+
                 for(int i=0; i<mask.cols; i++) {
                     for(int j=0; j < mask.rows; j++){
                         if(mask.at<uchar>(Point(i,j)) < 255) {

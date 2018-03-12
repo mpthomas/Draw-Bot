@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "58"
             endingLineNumber = "58"
-            landmarkName = "class CartoSimulatorLine"
+            landmarkName = "CartoSimulatorLine"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -117,7 +117,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "class CartoNode"
+            landmarkName = "CartoNode"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -181,7 +181,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
-            landmarkName = "class CartoPath"
+            landmarkName = "CartoPath"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -338,7 +338,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
             endingLineNumber = "124"
-            landmarkName = "refresh_window(int pos, void *userdata)"
+            landmarkName = "save(void *userdata)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -418,7 +418,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "class CartoPath"
+            landmarkName = "CartoPath"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -466,7 +466,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "class CartoPath"
+            landmarkName = "CartoPath"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -576,22 +576,6 @@
             timestampString = "539405710.88325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "CartoImageProc::createMask(Mat *inmat, Mat *mask, int start_x, int len_x, int start_y, int len_y)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "carto/CartoImageProc.cpp"
-            timestampString = "539405710.88325"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
             startingLineNumber = "170"
             endingLineNumber = "170"
             landmarkName = "CartoImageProc::buildTSPath(Mat *inmat)"
@@ -610,7 +594,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "199"
             endingLineNumber = "199"
-            landmarkName = "refresh_preview()"
+            landmarkName = "decrement_preview(Mat *edges, Mat *preview, uchar amount)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
@@ -626,7 +610,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
             endingLineNumber = "164"
-            landmarkName = "save(void *userdata)"
+            landmarkName = "load(void *userdata)"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

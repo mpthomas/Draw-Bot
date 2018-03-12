@@ -91,26 +91,6 @@ void CartoSimulatorLine::SetTarget(Point p, int steps){
     
     this->real_length=line_len;
     
-    // a^2 + b^2 = c^2
-    //float a=std::pow(this->getEdist(p),2);
-    // NOT WORKING
-    /*
-    if (this->motor_number % 2 == 0) {
-        float a=std::pow(p.x,2);
-        float b=std::pow(p.y,2);
-        float c=(int)(std::sqrt(a+b));
-    }
-    float a=std::pow(p.x,2);
-    float b=std::pow(p.y,2);
-    float c=(int)(std::sqrt(a+b));
-    
-    if(c > this->length){
-        distance=this->length-c;
-    }else if( c <= this->length){
-        distance=c-this->length;
-    }
-    */
-    
     int time_target = 5;
     this->steps_left = steps;
     
@@ -155,8 +135,6 @@ int CartoSimulatorLine::getEdist(Point p) {
 /************************/
 
 CartoSimulator::CartoSimulator(Mat *cvMat) {
-    //int max_x = cvMat->cols;
-    //int max_y = cvMat->rows;
     int max_x = 125 * 40;
     
     this->canvas=cvMat;

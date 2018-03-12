@@ -42,7 +42,6 @@ int main( int argc, char** argv ){
     config_file = new std::string(argv[2]);
     
     std::cout << cv::getBuildInformation() << std::endl;
-    //img=new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg");
     img=new CartoImageProc(argv[1]);
     img->toGrayscale();
     
@@ -96,18 +95,13 @@ void init_window(int win_number) {
     *i=p->mat.clone();
     
     p->filterGrayscale(i,starts[window_number],ends[window_number]);
-    
-    //if(p->id == 0) {
-        p->filterPerlin(i,(double)perlin_scales[window_number]/100);
-    //}
+    p->filterPerlin(i,(double)perlin_scales[window_number]/100);
     
     edges[window_number]=i->clone();
     Canny(edges[window_number],edges[window_number],1,3,3);
     bitwise_not(edges[window_number],edges[window_number]);
     
     p->show(*i,window_name);
-    
-    //refresh_preview();
     
     if(!(getTrackbarPos("Start",window_name) > 0)) {
         createTrackbar("Start",window_name,&starts[window_number],255,refresh_window,(void *)&p->id);
@@ -117,7 +111,6 @@ void init_window(int win_number) {
 }
 
 void refresh_window(int pos, void *userdata) {
-    //int window = *((int *)&userdata);
     int *window = reinterpret_cast<int *>(userdata);
     
     int num=*window;
@@ -174,13 +167,9 @@ void load(void *userdata) {
     
     for(int i=0; i < j[file]["windows"].size(); i++) {
         std::string window_name=j[file]["windows"][i]["name"].get<std::string>();
-        //for(int k=0; k < j[file]["windows"][i]["trackbars"].size(); k++){
-            //json o = j[file]["windows"][i]["trackbars"][k];
-            
             for(json::iterator it = j[file]["windows"][i]["trackbars"].begin(); it != j[file]["windows"][i]["trackbars"].end(); ++it){
                 setTrackbarPos(it.key(), window_name, it.value());
            }
-        //}
     }
 }
 
@@ -203,15 +192,6 @@ void refresh_preview() {
 void refresh_path() {
     img->buildPath(&preview);
     img->show(preview,"Path");
-    
-    /* TSP 
-     preview_tsp=edges[1].clone();
-     edges[1].copyTo(preview_tsp);
-     img->buildTSPath(&preview_tsp);
-     //img->show(preview,"Path");
-     img->show(preview_tsp,"TSP Path");
-     
-     */
 }
 
 void decrement_preview(Mat *edges, Mat *preview, uchar amount){
