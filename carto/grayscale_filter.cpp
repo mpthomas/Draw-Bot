@@ -28,6 +28,9 @@ int ends[] = {255,255,255};
 int perlin_scales[] = {25,25,25};
 int curr_window=0;
 int perlin_scale=25;
+
+std::string *config_file;
+
 Mat imgmat1, imgmat2, imgmat3, imgmat4 ,canny, preview, preview_tsp;
 Mat window_img[3], edges[3];
 
@@ -41,6 +44,8 @@ CartoImageProc *procs[3];
 
 void refresh(int pos, void *userData);
 int main( int argc, char** argv ){
+    config_file = new std::string(argv[2]);
+    
     std::cout << cv::getBuildInformation() << std::endl;
     //img=new CartoImageProc("/Users/matt/xcode/Cartogrifer/carto/carto/img.jpg");
     img=new CartoImageProc(argv[1]);
@@ -131,7 +136,7 @@ void save(void *userdata) {
     std::string file = procs[0]->image_name;
     int start,end,perlin;
     
-    std::ifstream in("/tmp/save.json");
+    std::ifstream in(config_file->c_str());
     
     if(in.good()) {
         in >> j;
@@ -153,7 +158,7 @@ void save(void *userdata) {
         };
     }
     
-    std::ofstream out("/tmp/save.json");
+    std::ofstream out(config_file->c_str());
     out << std::setw(4) << j << std::endl;
     out.close();
 }
@@ -162,7 +167,7 @@ void load(void *userdata) {
     json j;
     std::string file=procs[0]->image_name;
     
-    std::ifstream in("/tmp/save.json");
+    std::ifstream in(config_file->c_str());
     
     if(in.good()) {
         in >> j;
