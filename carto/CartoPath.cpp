@@ -23,7 +23,6 @@
 #include "ortools/constraint_solver/routing_flags.h"
 #include "ortools/base/random.h"
 
-//DEFINE_int32(tsp_size, 3, "Size of Traveling Salesman Problem instance.");
 DEFINE_bool(tsp_use_random_matrix, false, "Use random cost matrix.");
 DEFINE_int32(tsp_random_forbidden_connections, 0,
              "Number of random forbidden connections.");
@@ -36,7 +35,7 @@ using namespace cv;
 namespace Carto {
     CartoPath::CartoPath() : size_(0) {}
     CartoPath::CartoPath(int size) : size_(size) {}
-CartoPath::~CartoPath() {}
+    CartoPath::~CartoPath() {}
 
     void CartoPath::buildTSP(std::vector<Point> *path) {
         std::vector<Point> parr;
