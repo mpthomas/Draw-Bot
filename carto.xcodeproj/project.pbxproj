@@ -584,6 +584,7 @@
 					"/Users/matt/xcode/or-tools-6.4",
 					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+					"/Users/matt/xcode/opencv-2.4.13.3/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
@@ -621,6 +622,7 @@
 					"/Users/matt/xcode/or-tools-6.4",
 					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
+					"/Users/matt/xcode/opencv-2.4.13.3/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
