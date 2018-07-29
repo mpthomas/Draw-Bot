@@ -28,7 +28,7 @@ int CartoSimulatorMotor::getSpeed(){
     return this->speed;
 }
 
-void CartoSimulatorMotor::setTargetDistance(int distance) {
+void CartoSimulatorMotor::setTargetDistance(float distance) {
     this->target_distance = distance;
 }
 
@@ -37,7 +37,7 @@ void CartoSimulatorMotor::setMotorNumber(int number) {
 }
 
 void CartoSimulatorMotor::go(int time_target) {
-    this->arduino.open("/tmp/arduino.txt", std::ofstream::app);
+    this->arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::app);
     
     int s=0;
     
@@ -70,20 +70,21 @@ CartoSimulatorLine::~CartoSimulatorLine() {}
 
 int CartoSimulatorLine::_CalcEDistance(Point p1, Point p2)
 {
-    double x = (double)p1.x - (double)p2.x; //calculating number to square in next step
-    double y = (double)p1.y - (double)p2.y;
-    double dist;
+    float x = (float)p1.x - (float)p2.x; //calculating number to square in next step
+    float y = (float)p1.y - (float)p2.y;
+    float dist;
         
     dist = pow(x, 2) + pow(y, 2);       //calculating Euclidean distance
     dist = sqrt(dist);
         
+    //return (int)dist;
     return (int)dist;
 }
 
 void CartoSimulatorLine::SetTarget(Point p, int steps){
     // This may not work. Distance between points is not necessarily related to line length
-    float line_len = this->getEdist(p);
-    float distance = 0;
+    int line_len = this->getEdist(p);
+    int distance = 0;
     
     //std::cout << "Line len for motor " << this->motor_number << ": " << line_len << std::endl;
     
@@ -135,14 +136,14 @@ int CartoSimulatorLine::getEdist(Point p) {
 /************************/
 
 CartoSimulator::CartoSimulator(Mat *cvMat) {
-    int max_x = 125 * 40;
+    int max_x = 83 * 50;
     
     this->canvas=cvMat;
-    this->prev_point=Point(12*125, 6*125);
+    this->prev_point=Point(11.5*50, 5.25*50);
     
     std::ofstream arduino;
     if(!arduino.is_open()) {
-        arduino.open("/tmp/arduino.txt", std::ofstream::trunc);
+        arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::trunc);
     }
     arduino.close();
     
@@ -158,8 +159,8 @@ CartoSimulator::~CartoSimulator() {}
 
 void CartoSimulator::MoveToPoint(Point p, int steps=5){
     Point intersection;
-    p.x = p.x + (12*125);
-    p.y = p.y + (6*125);
+    p.x = p.x + (11.5*50); //12.5
+    p.y = p.y + (5.25*50);  //27.75
     this->line1->SetTarget(p,steps);
     this->line2->SetTarget(p,steps);
     CartoMoveTest test;
@@ -178,7 +179,8 @@ void CartoSimulator::MoveToPoint(Point p, int steps=5){
         //std::cout << "Prev Intersection\t: " << this->prev_point << std::endl;
         
         line(*this->canvas,this->prev_point,intersection,Scalar(255,255,255),1,8);
-        this->prev_point=intersection;
+        //this->prev_point=intersection;
+        this->prev_point=p;
     }
 }
 

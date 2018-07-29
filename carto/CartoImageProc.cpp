@@ -202,7 +202,9 @@ namespace Carto {
         for(int i=0;i<annNode.size();i++) {
             this->sim->MoveToPoint(annNode[i].point,1);
             
-            line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
+            if(this->line_counter++ < 7000) {
+                line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
+            }
             
             if(annNode[i].neighbors.size() > 0) {
                 this->renderPath(annNode[i].neighbors,inmat,annNode[i].point);

@@ -38,7 +38,7 @@ public:
     void setSpeed(float speed);
     int getSpeed();
     
-    void setTargetDistance(int distance);
+    void setTargetDistance(float distance);
     
     void go(int time_target);
 };
@@ -53,7 +53,7 @@ private:
 public:
     Point origin, end;
     int length = 0, steps_left = 0;
-    float real_length;
+    int real_length;
     
     CartoSimulatorLine(Point origin, Point end = Point(0,0));
     
@@ -70,7 +70,7 @@ public:
 class CartoSimulator {
     
 private:
-    int _CalcEDistance(Point p1, Point p2);
+    float _CalcEDistance(Point p1, Point p2);
     
 public:
     

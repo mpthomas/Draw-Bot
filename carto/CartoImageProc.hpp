@@ -23,7 +23,7 @@ namespace Carto {
 class CartoImageProc {
 public:
     std::string image_name;
-    int window_ctr,id;
+    int window_ctr,id, line_counter;
     cv::Mat mat;
     CartoSimulator *sim;
 
