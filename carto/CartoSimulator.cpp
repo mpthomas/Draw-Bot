@@ -136,11 +136,12 @@ int CartoSimulatorLine::getEdist(Point p) {
 /************************/
 
 CartoSimulator::CartoSimulator(Mat *cvMat) {
-    int max_x = 83 * 50;
+    //int max_x = 83 * 50;
+    int max_x=cvMat->cols;
     
     this->canvas=cvMat;
-    this->prev_point=Point(11.5*50, 5.25*50);
-    
+    //this->prev_point=Point(11.5*50, 5.25*50);
+    this->prev_point=Point(0,0);
     std::ofstream arduino;
     if(!arduino.is_open()) {
         arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::trunc);
@@ -159,8 +160,9 @@ CartoSimulator::~CartoSimulator() {}
 
 void CartoSimulator::MoveToPoint(Point p, int steps=5){
     Point intersection;
-    p.x = p.x + (11.5*50); //12.5
-    p.y = p.y + (5.25*50);  //27.75
+    // M was slanted. Trying without this.
+    //p.x = p.x + (11.5*50); //12.5
+    //p.y = p.y + (5.25*50);  //27.75
     this->line1->SetTarget(p,steps);
     this->line2->SetTarget(p,steps);
     CartoMoveTest test;
@@ -179,8 +181,8 @@ void CartoSimulator::MoveToPoint(Point p, int steps=5){
         //std::cout << "Prev Intersection\t: " << this->prev_point << std::endl;
         
         line(*this->canvas,this->prev_point,intersection,Scalar(255,255,255),1,8);
-        //this->prev_point=intersection;
-        this->prev_point=p;
+        this->prev_point=intersection;
+        //this->prev_point=p;
     }
 }
 

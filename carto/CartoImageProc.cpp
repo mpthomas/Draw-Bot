@@ -188,11 +188,12 @@ namespace Carto {
             return;
         }
         
-        this->sim=new CartoSimulator::CartoSimulator(inmat);
+        this->sim=new CartoSimulator(inmat);
+        this->line_counter=0;
         this->renderPath(annPath, inmat, Point(0,0));
     }
     
-    void CartoImageProc::renderPath(std::vector<CartoNode::CartoNode> annNode, Mat *inmat, Point start_point){
+    void CartoImageProc::renderPath(std::vector<CartoNode> annNode, Mat *inmat, Point start_point){
         if(annNode.size() == 0) {
             return;
         }
@@ -202,14 +203,13 @@ namespace Carto {
         for(int i=0;i<annNode.size();i++) {
             this->sim->MoveToPoint(annNode[i].point,1);
             
-            if(this->line_counter++ < 7000) {
+            if(this->line_counter++ < 1000) {
                 line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
             }
             
             if(annNode[i].neighbors.size() > 0) {
                 this->renderPath(annNode[i].neighbors,inmat,annNode[i].point);
             }
-            
             start_point=annNode[i].point;
         }
     }

@@ -44,7 +44,7 @@ public:
     void createMask(cv::Mat *inmat, cv::Mat *mask, int start_x, int len_x, int start_y, int len_y);
     void buildTSPath(cv::Mat *inmat);
     void buildPath(cv::Mat *inmat);
-    void renderPath(std::vector<CartoNode::CartoNode>, cv::Mat *inmat, cv::Point start_point);
+    void renderPath(std::vector<CartoNode>, cv::Mat *inmat, cv::Point start_point);
     void toGrayscale();
     void show();
     void show(cv::Mat mat, std::string name);
