@@ -109,6 +109,7 @@ void CartoSimulatorLine::SetTarget(Point p, int steps){
     
     this->end=p;
     
+    
     //for(int i=0;i<time_target;i++){
         // Each step is a "second"
         
