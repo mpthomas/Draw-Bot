@@ -71,6 +71,52 @@ namespace Carto {
         }
     }
     
+    void CartoImageProc::autoFilterPerlin(cv::Mat *inmat, double scale) {
+        int max_x = inmat->cols;
+        int max_y = inmat->rows;
+        int block_x_size=100, block_y_size=100;
+        Mat tmp_mat = inmat->clone();
+        vector<Mat> channels;
+        double mean, s;
+        uchar inmat_val, perlin_val;
+        
+        for(int start_x=0; start_x< max_x; start_x+=block_x_size) {
+            for(int start_y=0; start_y < max_y; start_y+=block_y_size){
+                
+                if(start_x+block_x_size > max_x) {
+                    start_x = max_x - (start_x - block_x_size);
+                    block_x_size = max_x - start_x;
+                }
+                
+                if(start_y+block_y_size > max_y) {
+                    start_y = max_x - (start_y - block_y_size);
+                    block_y_size = max_y - start_y;
+                }
+                
+                this->createMask(inmat, &tmp_mat, start_x, block_x_size, start_y, block_y_size);
+                mean = cv::mean(tmp_mat)[0]/1000*-1; // Average of first and only channel
+                s = .255 - mean + scale; // create a perlin scale filter relative to the mean. Offset by scale arg
+                
+                Mat perlin = CreatePerlinNoiseImage(Size(tmp_mat.cols, tmp_mat.rows), s);
+                
+                std::cout << "Mean: " << mean << " Scale: " << s << std::endl;
+                
+                for(int x = 0; x < perlin.cols; x++) {
+                    for(int y = 0; y < perlin.rows; y++) {
+                        inmat_val=inmat->at<uchar>(Point(x + start_x,y + start_y));
+                        perlin_val=perlin.at<uchar>(Point(x,y));
+                        
+                        if(inmat_val < 255 && perlin_val < 125) {
+                            inmat->at<uchar>(Point(x + start_x,y + start_y))=255;
+                        }else if (inmat_val < 255){
+                            inmat->at<uchar>(Point(x + start_x,y + start_y))=0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     void CartoImageProc::toGrayscale() {
         cvtColor(this->mat,this->mat,CV_BGR2GRAY);
     }
@@ -190,7 +236,7 @@ namespace Carto {
         
         this->sim=new CartoSimulator(inmat);
         this->line_counter=0;
-        this->renderPath(annPath, inmat, Point(0,0));
+        this->renderPath(annPath, inmat, this->sim->prev_point);
     }
     
     void CartoImageProc::renderPath(std::vector<CartoNode> annNode, Mat *inmat, Point start_point){
@@ -202,15 +248,25 @@ namespace Carto {
         
         for(int i=0;i<annNode.size();i++) {
             this->sim->MoveToPoint(annNode[i].point,1);
+            //Point simp=Point(this->sim->prev_point.x/5, this->sim->prev_point.y/5);
+            Point simp=this->sim->prev_point;
             
-            if(this->line_counter++ < 1000) {
-                line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
+            if(this->sim->draw_line) {
+                //line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
+                //start_point=annNode[i].point;
+                line(*inmat,start_point,simp,Scalar(200,200,200),1,8);
+                start_point=simp;
+                
+                std::cout << this->sim->prev_point.x << " " << this->sim->prev_point.y;
+                std::cout << " Len1: " << this->sim->line1->length << " Len2: " << this->sim->line2->length << std::endl;
             }
             
             if(annNode[i].neighbors.size() > 0) {
-                this->renderPath(annNode[i].neighbors,inmat,annNode[i].point);
+                //this->renderPath(annNode[i].neighbors,inmat,annNode[i].point);
+                this->renderPath(annNode[i].neighbors,inmat,simp);
             }
-            start_point=annNode[i].point;
+            //start_point=annNode[i].point;
+            start_point=simp;
         }
     }
 }

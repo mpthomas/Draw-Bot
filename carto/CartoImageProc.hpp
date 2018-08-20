@@ -41,6 +41,7 @@ public:
     cv::Mat filterGrayscale(int start, int end);
     void filterGrayscale(cv::Mat *inmat, int start, int end);
     void filterPerlin(cv::Mat *inmat, double scale);
+    void autoFilterPerlin(cv::Mat *inmat, double scale);
     void createMask(cv::Mat *inmat, cv::Mat *mask, int start_x, int len_x, int start_y, int len_y);
     void buildTSPath(cv::Mat *inmat);
     void buildPath(cv::Mat *inmat);

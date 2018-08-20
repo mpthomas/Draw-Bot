@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <fstream>
 #include <iostream>
+#include <iomanip>
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -22,6 +23,7 @@
 
 using namespace cv;
 
+/*
 class CartoSimulatorMotor {
 
 private:
@@ -34,7 +36,6 @@ public:
     
     ~CartoSimulatorMotor();
     
-    void setMotorNumber(int number);
     void setSpeed(float speed);
     int getSpeed();
     
@@ -42,27 +43,30 @@ public:
     
     void go(int time_target);
 };
-
-class CartoSimulatorLine: public CartoSimulatorMotor {
+*/
+class CartoSimulatorLine {
 private:
     double x;
     double y;
     
-    int _CalcEDistance(Point p1, Point p2);
+    float _CalcEDistance(Point p1, Point p2);
+    std::ofstream arduino;
     
 public:
     Point origin, end;
-    int length = 0, steps_left = 0;
-    int real_length;
+    int steps_left = 0, motor_number =0;
+    float length, real_length, target_distance;
     
     CartoSimulatorLine(Point origin, Point end = Point(0,0));
     
     ~CartoSimulatorLine();
     
     void SetTarget(Point p, int steps);
+    void goFromTo(CvPoint2D32f from, Point to);
+    void setMotorNumber(int number);
     void Step(int steps);
 
-    int getEdist(Point p);
+    float getEdist(Point p);
     int getStepsLeft();
 };
 
@@ -77,7 +81,8 @@ public:
     int current_x = 0;
     int current_y = 0;
     Mat *canvas;
-    Point prev_point;
+    CvPoint2D32f prev_point;
+    bool draw_line = false;
     
     Point origin;
     CartoSimulatorLine *line1;
@@ -89,6 +94,7 @@ public:
    ~CartoSimulator();
     
     void MoveToPoint(Point p, int steps);
+    CvPoint2D32f findPoint(int side_a, int side_b, int side_c);
 };
 
 #endif /* CartoSimulator_hpp */

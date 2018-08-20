@@ -40,7 +40,7 @@ CartoImageProc *procs[3];
 void refresh(int pos, void *userData);
 int main( int argc, char** argv ){
     config_file = new std::string(argv[2]);
-    
+    void *p = nullptr;
     std::cout << cv::getBuildInformation() << std::endl;
     img=new CartoImageProc(argv[1]);
     img->toGrayscale();
@@ -58,6 +58,7 @@ int main( int argc, char** argv ){
     }
     
     init_control_panel();
+    load(p);
 
     waitLoop();
 }
@@ -85,8 +86,8 @@ void init_window(int win_number) {
     int window_number=win_number;
     curr_window=win_number;
     
-    string window_name="Step ";
-    window_name.append(std::to_string(window_number));
+    String window_name="Step ";
+    window_name+=std::to_string(window_number);
 
     p=procs[window_number];
     
@@ -96,6 +97,7 @@ void init_window(int win_number) {
     
     p->filterGrayscale(i,starts[window_number],ends[window_number]);
     p->filterPerlin(i,(double)perlin_scales[window_number]/100);
+    //p->autoFilterPerlin(i,(double)perlin_scales[window_number]/100);
     
     edges[window_number]=i->clone();
     Canny(edges[window_number],edges[window_number],1,3,3);
@@ -133,8 +135,8 @@ void save(void *userdata) {
     in.close();
     
     for(int i=0; i<total_layers; i++) {
-        string window_name="Step ";
-        window_name.append(std::to_string(i));
+        String window_name="Step ";
+        window_name+=std::to_string(i);
         start=getTrackbarPos("Start", window_name);
         end=getTrackbarPos("End", window_name);
         perlin=getTrackbarPos("Perlin", window_name);
@@ -213,6 +215,7 @@ void refresh(int pos, void *userData) {
     imgmat1 = img->mat.clone();
     img->filterGrayscale(&imgmat1, start,end);
     img->filterPerlin(&imgmat1,(double)perlin_scale/100);
+    //img->autoFilterPerlin(&imgmat1,(double)perlin_scale/100);
 
     img->show(imgmat1,"0 to 150");
     

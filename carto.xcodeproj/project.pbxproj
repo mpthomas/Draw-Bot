@@ -11,18 +11,17 @@
 		C938CE5B2024C1ED00F2D28D /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C938CE5C2024C20200F2D28D /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
 		C938CE5D2024C20900F2D28D /* CartoPath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B10E2014347E0099956C /* CartoPath.cpp */; };
-		C9D8B1011F80A9E40099956C /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
-		C9D8B1021F80A9E40099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
-		C9D8B1031F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
+		C9C1D7772123CAEF0095BF44 /* libopencv_imgproc.3.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D7762123CAEF0095BF44 /* libopencv_imgproc.3.4.2.dylib */; };
+		C9C1D7792123CB0D0095BF44 /* libopencv_highgui.3.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D7782123CB0D0095BF44 /* libopencv_highgui.3.4.2.dylib */; };
+		C9C1D77B2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D77A2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib */; };
+		C9C1D77D2123CBF60095BF44 /* libANN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D77C2123CBF60095BF44 /* libANN.a */; };
+		C9C1D77F2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D77E2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib */; };
 		C9D8B1081F8DA8750099956C /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
 		C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
 		C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
 		C9D8B11D2014F5C00099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
 		C9D8B11E2014F5C00099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
 		C9D8B11F2014F5C00099956C /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
-		C9D8B1222014F5C00099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
-		C9D8B1232014F5C00099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
-		C9D8B1242014F5C00099956C /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
 		C9F8E69D2014FB3800D554F6 /* grayscale_filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69A2014FA0600D554F6 /* grayscale_filter.cpp */; };
 		C9F8E69E2014FE1800D554F6 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B0F71F8093C60099956C /* main.cpp */; };
 		C9F8E6A12014FEC100D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
@@ -36,9 +35,6 @@
 		C9F8E6CA20201AB000D554F6 /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
 		C9F8E6CB20201AB000D554F6 /* CartoImageProc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */; };
 		C9F8E6CD20201AB000D554F6 /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
-		C9F8E6CF20201AB000D554F6 /* libopencv_highgui.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */; };
-		C9F8E6D020201AB000D554F6 /* libopencv_imgproc.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */; };
-		C9F8E6D120201AB000D554F6 /* libopencv_core.2.4.13.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */; };
 		C9F8E6DA20203AC600D554F6 /* libortools.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F8E6D920203AC600D554F6 /* libortools.dylib */; };
 		C9F8E6DE2024B4BA00D554F6 /* libortools.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9F8E6D920203AC600D554F6 /* libortools.dylib */; };
 /* End PBXBuildFile section */
@@ -85,13 +81,15 @@
 /* Begin PBXFileReference section */
 		C938CE5F2024E57300F2D28D /* google_tsp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = google_tsp.cpp; sourceTree = "<group>"; };
 		C938CE6420267A9D00F2D28D /* fileDialog.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = fileDialog.mm; sourceTree = "<group>"; };
+		C9C1D7762123CAEF0095BF44 /* libopencv_imgproc.3.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.3.4.2.dylib; path = carto/libopencv_imgproc.3.4.2.dylib; sourceTree = "<group>"; };
+		C9C1D7782123CB0D0095BF44 /* libopencv_highgui.3.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.3.4.2.dylib; path = carto/libopencv_highgui.3.4.2.dylib; sourceTree = "<group>"; };
+		C9C1D77A2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.3.4.2.dylib; path = carto/libopencv_core.3.4.2.dylib; sourceTree = "<group>"; };
+		C9C1D77C2123CBF60095BF44 /* libANN.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libANN.a; path = ../../ann_1.1.2/lib/libANN.a; sourceTree = "<group>"; };
+		C9C1D77E2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgcodecs.3.4.2.dylib; path = carto/libopencv_imgcodecs.3.4.2.dylib; sourceTree = "<group>"; };
 		C9D4CFE8202951C1005379BB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C9D4CFE9202D410B005379BB /* json.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = json.hpp; path = ../../../json.hpp; sourceTree = "<group>"; };
 		C9D8B0F41F8093C60099956C /* carto */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = carto; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9D8B0F71F8093C60099956C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_core.2.4.13.dylib; sourceTree = "<group>"; };
-		C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_highgui.2.4.13.dylib; sourceTree = "<group>"; };
-		C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = libopencv_imgproc.2.4.13.dylib; sourceTree = "<group>"; };
 		C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoSimulator.cpp; sourceTree = "<group>"; };
 		C9D8B1051F8A7F110099956C /* CartoSimulator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoSimulator.hpp; sourceTree = "<group>"; };
 		C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoMoveTest.cpp; sourceTree = "<group>"; };
@@ -126,9 +124,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9D8B1021F80A9E40099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */,
-				C9D8B1031F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */,
-				C9D8B1011F80A9E40099956C /* libopencv_core.2.4.13.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,10 +131,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9C1D77F2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib in Frameworks */,
+				C9C1D77D2123CBF60095BF44 /* libANN.a in Frameworks */,
+				C9C1D77B2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib in Frameworks */,
+				C9C1D7792123CB0D0095BF44 /* libopencv_highgui.3.4.2.dylib in Frameworks */,
+				C9C1D7772123CAEF0095BF44 /* libopencv_imgproc.3.4.2.dylib in Frameworks */,
 				C9F8E6DE2024B4BA00D554F6 /* libortools.dylib in Frameworks */,
-				C9D8B1222014F5C00099956C /* libopencv_highgui.2.4.13.dylib in Frameworks */,
-				C9D8B1232014F5C00099956C /* libopencv_imgproc.2.4.13.dylib in Frameworks */,
-				C9D8B1242014F5C00099956C /* libopencv_core.2.4.13.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,9 +152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9F8E6DA20203AC600D554F6 /* libortools.dylib in Frameworks */,
-				C9F8E6CF20201AB000D554F6 /* libopencv_highgui.2.4.13.dylib in Frameworks */,
-				C9F8E6D020201AB000D554F6 /* libopencv_imgproc.2.4.13.dylib in Frameworks */,
-				C9F8E6D120201AB000D554F6 /* libopencv_core.2.4.13.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,9 +199,6 @@
 				C9D8B0F71F8093C60099956C /* main.cpp */,
 				C9F8E69F2014FEC100D554F6 /* CartoImageProc.cpp */,
 				C9F8E6A02014FEC100D554F6 /* CartoImageProc.hpp */,
-				C9D8B0FE1F80A9E40099956C /* libopencv_core.2.4.13.dylib */,
-				C9D8B0FF1F80A9E40099956C /* libopencv_highgui.2.4.13.dylib */,
-				C9D8B1001F80A9E40099956C /* libopencv_imgproc.2.4.13.dylib */,
 				C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */,
 				C9D8B1051F8A7F110099956C /* CartoSimulator.hpp */,
 				C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */,
@@ -226,6 +217,11 @@
 		C9F8E6D820203AC500D554F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9C1D77E2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib */,
+				C9C1D77C2123CBF60095BF44 /* libANN.a */,
+				C9C1D77A2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib */,
+				C9C1D7782123CB0D0095BF44 /* libopencv_highgui.3.4.2.dylib */,
+				C9C1D7762123CAEF0095BF44 /* libopencv_imgproc.3.4.2.dylib */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -454,6 +450,10 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-lopencv",
+					"-v",
+				);
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -510,6 +510,10 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				"OTHER_LDFLAGS[arch=*]" = (
+					"-lopencv",
+					"-v",
+				);
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -599,21 +603,13 @@
 					"/Users/matt/xcode/opencv-2.4.13.3/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
+					/usr/local/lib,
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
 					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
 				);
-				OTHER_LDFLAGS = (
-					"-v",
-					"-lANN",
-					"-lortools",
-					"-framework",
-					Cocoa,
-					"-framework",
-					Carbon,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -637,21 +633,13 @@
 					"/Users/matt/xcode/opencv-2.4.13.3/include",
 				);
 				LIBRARY_SEARCH_PATHS = (
-					"/Users/matt/xcode/opencv-2.4.13.3/build/lib",
+					/usr/local/lib,
 					"$(PROJECT_DIR)/carto",
 					/Users/matt/xcode/ann/lib,
 					.,
 					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
 				);
-				OTHER_LDFLAGS = (
-					"-v",
-					"-lANN",
-					"-lortools",
-					"-framework",
-					Cocoa,
-					"-framework",
-					Carbon,
-				);
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
