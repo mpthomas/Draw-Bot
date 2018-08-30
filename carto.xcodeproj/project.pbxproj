@@ -601,6 +601,7 @@
 					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
 					"/Users/matt/xcode/opencv-2.4.13.3/include",
+					/usr/local/opt/qt5/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -608,6 +609,7 @@
 					/Users/matt/xcode/ann/lib,
 					.,
 					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
+					/usr/local/opt/qt5/lib,
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -631,6 +633,7 @@
 					"/Users/matt/xcode/or-tools-6.4/ortools/gen/ortools/constraint_solver",
 					"/Users/matt/xcode/or-tools-6.4/dependencies/install/include",
 					"/Users/matt/xcode/opencv-2.4.13.3/include",
+					/usr/local/opt/qt5/include,
 				);
 				LIBRARY_SEARCH_PATHS = (
 					/usr/local/lib,
@@ -638,6 +641,7 @@
 					/Users/matt/xcode/ann/lib,
 					.,
 					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
+					/usr/local/opt/qt5/lib,
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

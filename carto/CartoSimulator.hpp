@@ -38,7 +38,7 @@ public:
     
     void setSpeed(float speed);
     int getSpeed();
-    
+ 
     void setTargetDistance(float distance);
     
     void go(int time_target);
@@ -50,13 +50,14 @@ private:
     double y;
     
     float _CalcEDistance(Point p1, Point p2);
-    std::ofstream arduino;
     
 public:
     Point origin, end;
     int steps_left = 0, motor_number =0;
     float length, real_length, target_distance;
+    std::ofstream *arduino;
     
+    TickMeter tick_meter;
     CartoSimulatorLine(Point origin, Point end = Point(0,0));
     
     ~CartoSimulatorLine();
@@ -83,6 +84,8 @@ public:
     Mat *canvas;
     CvPoint2D32f prev_point;
     bool draw_line = false;
+    std::ofstream *arduino;
+    TickMeter tick_meter;
     
     Point origin;
     CartoSimulatorLine *line1;

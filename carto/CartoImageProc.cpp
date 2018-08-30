@@ -37,6 +37,9 @@ namespace Carto {
     }
     
     void CartoImageProc::filterGrayscale(cv::Mat *inmat, int start, int end){
+        TickMeter tm;
+        tm.start();
+     
         Mat tmp = Mat::zeros(inmat->rows, inmat->cols, CV_8UC3);
         tmp=Scalar::all(255);
         
@@ -51,9 +54,13 @@ namespace Carto {
                 }
             }
         }
+        tm.stop();
+        std::cout << "filterGrayscale: " << tm.getTimeSec() << std::endl;
     }
 
     void CartoImageProc::filterPerlin(cv::Mat *inmat, double scale){
+        TickMeter tm;
+        tm.start();
         Mat perlin = CreatePerlinNoiseImage(Size(inmat->cols,inmat->rows),scale);
         uchar inmat_val, perlin_val;
         
@@ -69,6 +76,8 @@ namespace Carto {
                 }
             }
         }
+        tm.stop();
+        std::cout << "filterPerlin: " << tm.getTimeSec() << std::endl;
     }
     
     void CartoImageProc::autoFilterPerlin(cv::Mat *inmat, double scale) {
@@ -122,6 +131,8 @@ namespace Carto {
     }
     
     void CartoImageProc::show() {
+        TickMeter tm;
+        tm.start();
         string window_name=this->image_name;
         window_name.append(std::to_string(this->window_ctr));
         
@@ -129,19 +140,31 @@ namespace Carto {
         
         namedWindow(window_name,CV_WINDOW_AUTOSIZE);
         imshow(window_name,this->mat);
+        
+        tm.stop();
+        std::cout << "show: " << tm.getTimeSec() << std::endl;
     }
     
     void CartoImageProc::show(Mat mat, std::string name) {
+        TickMeter tm;
+        tm.start();
         namedWindow(name,CV_GUI_EXPANDED | WINDOW_NORMAL);
         imshow(name,mat);
+        tm.stop();
+        std::cout << "show: " << tm.getTimeSec() << std::endl;
     }
     
     void CartoImageProc::createMask(Mat *inmat, Mat *mask, int start_x, int len_x, int start_y, int len_y) {
+        TickMeter tm;
+        tm.start();
         *mask=Scalar::all(0);
         
         Rect roi = Rect(start_x, start_y, len_x, len_y);
         Mat crop(*inmat, roi);
         crop.copyTo(*mask);
+        
+        tm.stop();
+        std::cout << "createMask: " << tm.getTimeSec() << std::endl;
     }
     
     void CartoImageProc::buildTSPath(Mat *inmat) {
@@ -219,10 +242,35 @@ namespace Carto {
     }
     
     void CartoImageProc::buildPath(Mat *inmat) {
+        TickMeter tm;
+        tm.start();
         CartoPath *path = new CartoPath();
+        int target_x=1634, target_y=729;
         std::vector<CartoNode> annPath;
         
-        path->detected_edges=inmat->clone();
+        // The path image needs to be the size of the drawing board
+        // therefore "paste" in the smaller image.
+        //Mat drawingMat(this->canvas_rows, this->canvas_cols, CV_8UC1);
+        Mat drawingMat = imread("/Users/matt/xcode/track_bmw.jpeg");
+        
+        if(drawingMat.empty()) {
+            std::cout << "Unable to find blank drawing mat";
+            return;
+        }
+        
+        cvtColor(drawingMat,drawingMat,COLOR_BGR2GRAY);
+        drawingMat=Scalar::all(255);
+        
+        if(inmat->rows <= drawingMat.rows and inmat->cols <= drawingMat.cols) {
+            inmat->copyTo(drawingMat(Rect(target_x, target_y,inmat->cols,inmat->rows)));
+        }else{
+            std::cout << "Mismatch for source image and drawing mat\n";
+            return;
+        }
+        
+        //path->detected_edges=inmat->clone();
+        path->detected_edges = drawingMat.clone();
+        *inmat=drawingMat.clone();
         *inmat=Scalar::all(255);
         
         path->buildANNPath(&annPath);
@@ -236,7 +284,17 @@ namespace Carto {
         
         this->sim=new CartoSimulator(inmat);
         this->line_counter=0;
+        
+        std::cout << "Start Point is (" << this->sim->prev_point.x << "," << this->sim->prev_point.y << ")" << std::endl;
+        
+        this->sim->tick_meter.reset();
         this->renderPath(annPath, inmat, this->sim->prev_point);
+        this->sim->arduino->close();
+        
+        double average_time = this->sim->tick_meter.getTimeMilli() / this->sim->tick_meter.getCounter();
+        std::cout << "Average MoveToPoint is: " << average_time << " (" << this->sim->tick_meter.getCounter() << ")\n";
+        tm.stop();
+        std::cout << "buildPath: " << tm.getTimeSec() << std::endl;
     }
     
     void CartoImageProc::renderPath(std::vector<CartoNode> annNode, Mat *inmat, Point start_point){
@@ -257,8 +315,8 @@ namespace Carto {
                 line(*inmat,start_point,simp,Scalar(200,200,200),1,8);
                 start_point=simp;
                 
-                std::cout << this->sim->prev_point.x << " " << this->sim->prev_point.y;
-                std::cout << " Len1: " << this->sim->line1->length << " Len2: " << this->sim->line2->length << std::endl;
+                //std::cout << this->sim->prev_point.x << " " << this->sim->prev_point.y;
+                //std::cout << " Len1: " << this->sim->line1->length << " Len2: " << this->sim->line2->length << std::endl;
             }
             
             if(annNode[i].neighbors.size() > 0) {

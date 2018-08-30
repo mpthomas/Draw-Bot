@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/matt/xcode/track_bmw.jpeg"
+            argument = "/Users/matt/xcode/starry_night.jpg"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -72,6 +72,11 @@
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>
+         <AdditionalOption
+            key = "NSZombieEnabled"
+            value = "YES"
+            isEnabled = "YES">
+         </AdditionalOption>
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction

@@ -13,6 +13,7 @@
 //     http://cs.nyu.edu/~perlin/noise/
 //
 #include <math.h>
+#include <iostream>
 #include "PerlinNoise.hpp"
 
 class PerlinNoise {
@@ -100,9 +101,11 @@ PerlinNoise perlin_noise;;
 
 cv::Mat CreatePerlinNoiseImage(const cv::Size &size, const double &scale)
 {
+    cv::TickMeter tm;
     cv::Mat img;
+
     img.create(size, CV_8UC1);
-    
+    tm.start();
     for (int y = 0; y < size.height; ++y) {
         for (int x = 0; x < size.width; ++x) {
             double p = perlin_noise.noise(x  * scale, y * scale, 0.0); // -1.0`1.0
@@ -110,6 +113,9 @@ cv::Mat CreatePerlinNoiseImage(const cv::Size &size, const double &scale)
             img.at<uchar>(cv::Point(x, y)) = (uchar)(p * 255);
         }
     }
+    
+    tm.stop();
+    std::cout << "CreatePerlinNoiseImage: " << tm.getTimeSec() << std::endl;
     
     return img;
 }

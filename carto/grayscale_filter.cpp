@@ -7,6 +7,7 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "PerlinNoise.hpp"
 #include "json.hpp"
+//#include <QtWidgets/QFileDialog>
 
 using namespace Carto;
 using namespace cv;
@@ -16,42 +17,52 @@ void refresh_window(int pos, void *userData);
 void init_window(int window_number);
 void refresh_preview();
 void refresh_path();
+void open_file(void *userdata);
 void decrement_preview(Mat *edges, Mat *preview, uchar amount);
 void waitLoop();
 void save(void *userdata);
 void load(void *userdata);
+void new_layer(void *userdata);
 void init_control_panel();
+void get_layer_count();
+void delete_layer(void *userdata);
 
-int start = 0, end = 150, total_layers=2;
-int starts[]= {1,1,1}; // Leave at 1 to pass getTrackbarPos test
-int ends[] = {255,255,255};
-int perlin_scales[] = {25,25,25};
+int start = 0, end = 150, total_layers=1;
+int starts[]= {1,1,1,1,1,1,1,1}; // Leave at 1 to pass getTrackbarPos test
+int ends[] = {255,255,255,255,255,255,255};
+int perlin_scales[] = {25,25,25,25,25,25,25};
 int curr_window=0;
 int perlin_scale=25;
+//QString img_file;
 
-std::string *config_file;
+std::string *config_file, image_name;
 
-Mat imgmat1, imgmat2, imgmat3, imgmat4 ,canny, preview, preview_tsp;
-Mat window_img[3], edges[3];
+Mat imgmat1, imgmat2, imgmat3, imgmat4 ,canny, preview, preview_tsp, path_img;
+Mat window_img[7], edges[7];
 
 CartoImageProc *img;
-CartoImageProc *procs[3];
+CartoImageProc *procs[7];
 
 void refresh(int pos, void *userData);
 int main( int argc, char** argv ){
     config_file = new std::string(argv[2]);
     void *p = nullptr;
-    std::cout << cv::getBuildInformation() << std::endl;
+    //std::cout << cv::getBuildInformation() << std::endl;
     img=new CartoImageProc(argv[1]);
     img->toGrayscale();
+    image_name.assign(argv[1]);
+    get_layer_count();
     
-    procs[0] = new CartoImageProc(argv[1], 0);
-    procs[1] = new CartoImageProc(argv[1], 1);
-    procs[2] = new CartoImageProc(argv[1], 2);
+    for(int i=0; i<total_layers; i++) {
+        procs[i] = new CartoImageProc(argv[1], i);
+        procs[i]->toGrayscale();
+    }
+    //procs[1] = new CartoImageProc(argv[1], 1);
+    //procs[2] = new CartoImageProc(argv[1], 2);
     
-    procs[0]->toGrayscale();
-    procs[1]->toGrayscale();
-    procs[2]->toGrayscale();
+    //procs[0]->toGrayscale();
+    //procs[1]->toGrayscale();
+    //procs[2]->toGrayscale();
     
     for(int i=0;i<total_layers;i++) {
         init_window((int)i);
@@ -153,9 +164,39 @@ void save(void *userdata) {
     out.close();
 }
 
+void get_layer_count() {
+    json j;
+    
+    std::ifstream in(config_file->c_str());
+    
+    if(!in.good()) {
+        total_layers=1;
+        return;
+    }else{
+        in >> j;
+        in.close();
+    }
+    
+    total_layers=(int)j[image_name]["windows"].size();
+    
+    if(total_layers == 0){
+        total_layers=1;
+        return;
+    }
+    return;
+}
+
+void open_file(void *userdata) {
+   // QWidget *widget =0;
+  //  QString imageName = QFileDialog::getOpenFileName(widget,"Open image",".","Image Files (*.png *.jpg *.jpeg)");
+    //std::cout << "Opening " << imageName.toStdString() << std::endl;
+}
+
 void load(void *userdata) {
     json j;
-    std::string file=procs[0]->image_name;
+    int i;
+    //std::string file=procs[0]->image_name;
+    std::string file=image_name;
     
     std::ifstream in(config_file->c_str());
     
@@ -164,28 +205,56 @@ void load(void *userdata) {
         in.close();
     }else{
         in.close();
+        total_layers=1;
         return;
     }
     
-    for(int i=0; i < j[file]["windows"].size(); i++) {
+    for(i=0; i < j[file]["windows"].size(); i++) {
         std::string window_name=j[file]["windows"][i]["name"].get<std::string>();
             for(json::iterator it = j[file]["windows"][i]["trackbars"].begin(); it != j[file]["windows"][i]["trackbars"].end(); ++it){
                 setTrackbarPos(it.key(), window_name, it.value());
            }
     }
+    
+    if(i == 0)
+        total_layers=1;
+    else
+        total_layers=i;
 }
 
+void new_layer(void *userdata) {
+    curr_window++;
+    total_layers++;
+    
+    procs[total_layers-1] = new CartoImageProc(image_name, total_layers-1);
+    procs[total_layers-1]->toGrayscale();
+    init_window(total_layers-1);
+}
+
+void delete_layer(void *userdata) {
+    curr_window--;
+    total_layers--;
+    
+    free(procs[total_layers]);
+}
 void init_control_panel() {
+    createButton("Open File", (ButtonCallback)open_file);
     createButton("Save", (ButtonCallback)save);
     createButton("Load", (ButtonCallback)load);
+    createButton("New Layer", (ButtonCallback)new_layer);
+    createButton("Delete Layer", (ButtonCallback)delete_layer);
 }
 
 void refresh_preview() {
     preview=edges[0].clone();
     preview=Scalar::all(255);
 
-    decrement_preview(&edges[0],&preview,50);
-    decrement_preview(&edges[1],&preview,100);
+    for(int i=0; i< total_layers; i++) {
+        decrement_preview(&edges[i],&preview,50);
+    }
+    
+    //decrement_preview(&edges[0],&preview,50);
+    //decrement_preview(&edges[1],&preview,100);
     
     //img->buildPath(&preview);
     img->show(preview,"Preview");

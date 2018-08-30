@@ -63,12 +63,12 @@ void CartoSimulatorLine::SetTarget(Point p, int steps){
     this->real_length=line_len;
     this->length=line_len;
     
-    this->arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::app);
+    //this->arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::app);
     int s=0;
     
-    this->arduino << this->motor_number << "," << s << "," << std::setprecision(3) << this->target_distance << std::endl;
-    this->arduino.flush();
-    this->arduino.close();
+    *this->arduino << this->motor_number << "," << s << "," << std::setprecision(3) << this->target_distance << std::endl;
+    this->arduino->flush();
+    //this->arduino.close();
     //this->go(0);
     
     this->end=p;
@@ -103,12 +103,12 @@ void CartoSimulatorLine::goFromTo(CvPoint2D32f from, Point to){
     //this->real_length=line_len;
     //this->length=line_len;
     
-    this->arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::app);
+    //this->arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::app);
     int s=0;
     
-    this->arduino << this->motor_number << "," << s << "," << std::setprecision(4) << this->target_distance << std::endl;
-    this->arduino.flush();
-    this->arduino.close();
+    *this->arduino << this->motor_number << "," << s << "," << std::setprecision(4) << this->target_distance << std::endl;
+    this->arduino->flush();
+    //this->arduino.close();
     //this->go(0);
     
     this->end=to;
@@ -136,18 +136,17 @@ CartoSimulator::CartoSimulator(Mat *cvMat) {
     //this->prev_point=this->findPoint(440*5, 736*5, 980*5);
     this->prev_point=this->findPoint(320*5, 700*5, 980*5);
     //this->prev_point=Point(0,0);
-    
-    std::ofstream arduino;
-    if(!arduino.is_open()) {
-        arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::trunc);
-    }
-    arduino.close();
+
+    this->arduino = new std::ofstream;
+    this->arduino->open("/Users/matt/xcode/arduino.txt", std::ofstream::trunc);
     
     this->line1=new CartoSimulatorLine(Point(0,0), this->prev_point);
     this->line1->setMotorNumber(0);
+    this->line1->arduino = this->arduino;
     
     this->line2=new CartoSimulatorLine(Point(max_x,0), this->prev_point);
     this->line2->setMotorNumber(1);
+    this->line2->arduino=this->arduino;
     
     //std::cout << this->prev_point.x << " " << this->prev_point.y;
     //std::cout << " Len1: " << this->line1->length << " Len2: " << this->line2->length << " START" << std::endl;
@@ -199,6 +198,7 @@ CvPoint2D32f CartoSimulator::findPoint(int side_a, int side_b, int side_c) // le
 
 void CartoSimulator::MoveToPoint(Point p, int steps=5){
     Point intersection;
+    this->tick_meter.start();
     // M was slanted. Trying without this.
     //p.x = p.x + (11.5*50); //12.5
     //p.y = p.y + (5.25*50);  //27.75
@@ -210,25 +210,10 @@ void CartoSimulator::MoveToPoint(Point p, int steps=5){
     
     this->line1->goFromTo(this->prev_point,p);
     this->line2->goFromTo(this->prev_point,p);
+    this->tick_meter.stop();
     
     CartoMoveTest test;
-    //this->draw_line=true;
-    /*
-    intersection=test.getIntersection(
-        this->line1->origin,
-        this->line1->length,
-        this->line2->origin,
-        this->line2->length);
-*/
-    /*
-    if((int)line1->target_distance == 0 && (int)line2->target_distance == 0){
-        draw_line=false;
-    }else{
-        line(*this->canvas,this->prev_point,p,Scalar(255,255,255),1,8);
-    }
-      */
-        //this->prev_point=intersection;
-    ////this->prev_point=p;
+
     this->prev_point=this->findPoint(this->line1->length, this->line2->length, this->line2->origin.x);
 }
 

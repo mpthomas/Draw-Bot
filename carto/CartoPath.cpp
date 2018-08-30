@@ -113,71 +113,101 @@ namespace Carto {
     }
     
     void CartoPath::buildANNPath(std::vector<Carto::CartoNode> *path){
-    int i=0, j=0, acc=0, dim = 2, k=2, eps=0;
-    int nPts=0;              // actual number of data points
-    ANNpointArray dataPts; // data points
-    ANNpoint queryPt;      // query point
-    ANNidxArray nnIdx;     // near neighbor indices
-    ANNdistArray dists;    // near neighbor distances
-    ANNkd_tree* kdTree;    // search structure
-    
-    for(i=0; i != this->detected_edges.rows; i++){
-        for(j=0; j != this->detected_edges.cols; j++){
-            int pixel = this->detected_edges.at<uchar>(i,j);
-            if(pixel < 255) {
-                nPts++;
+        TickMeter tm;
+        tm.start();
+        int i=0, j=0, acc=0, dim = 2, k=2, eps=0;
+        int nPts=0;              // actual number of data points
+        ANNpointArray dataPts; // data points
+        ANNpoint queryPt;      // query point
+        ANNidxArray nnIdx;     // near neighbor indices
+        ANNdistArray dists;    // near neighbor distances
+        ANNkd_tree* kdTree;    // search structure
+        
+        for(i=0; i != this->detected_edges.rows; i++){
+            for(j=0; j != this->detected_edges.cols; j++){
+                int pixel = this->detected_edges.at<uchar>(i,j);
+                if(pixel < 255) {
+                    nPts++;
+                }
             }
         }
-    }
-    
-    queryPt=annAllocPt(dim);
-    dataPts=annAllocPts(nPts, dim);
-    nnIdx=new ANNidx[k];
-    dists = new ANNdist[k];
-
-    for(i=0; i != this->detected_edges.rows; i++){
-        for(j=0; j != this->detected_edges.cols; j++){
-            int pixel = this->detected_edges.at<uchar>(i,j);
-            if(pixel < 255) {
-                dataPts[acc][0] = (double)j;
-                dataPts[acc][1] = (double)i;
-                
-                // std::cout << "Set Data points: " << dataPts[acc][0] << std::endl;
-                acc++;
+        tm.stop();
+        std::cout << "buildANNPath (nPts loop) took: " << tm.getTimeSec() << std::endl;
+        tm.reset();
+        
+        tm.start();
+        queryPt=annAllocPt(dim);
+        dataPts=annAllocPts(nPts, dim);
+        tm.stop();
+        std::cout << "buildANNPath (annAllocPts allocations) took: " << tm.getTimeSec() << std::endl;
+        tm.reset();
+        
+        nnIdx=new ANNidx[k];
+        dists = new ANNdist[k];
+        
+        tm.start();
+        
+        for(i=0; i != this->detected_edges.rows; i++){
+            for(j=0; j != this->detected_edges.cols; j++){
+                int pixel = this->detected_edges.at<uchar>(i,j);
+                if(pixel < 255) {
+                    dataPts[acc][0] = (double)j;
+                    dataPts[acc][1] = (double)i;
+                    
+                    // std::cout << "Set Data points: " << dataPts[acc][0] << std::endl;
+                    acc++;
+                }
             }
         }
-    }
-    kdTree = new ANNkd_tree(                    // build search structure
-                            dataPts,                    // the data points
-                            nPts,                       // number of points
-                            dim);                       // dimension of space
-    
-    queryPt[0]=0;
-    queryPt[1]=0;
-    
-    for(i=0;i<nPts;i++){
-        kdTree->annkPriSearch(                     // search
-                              queryPt,                        // query point
-                              k,                              // number of near neighbors
-                              nnIdx,                          // nearest neighbors (returned)
-                              dists,                          // distance (returned)
-                              eps);                           // error bound
-        Carto::CartoNode n;
-        n.point=Point(dataPts[nnIdx[0]][0], dataPts[nnIdx[0]][1]);
         
-        path->push_back(n);
-        //annDeallocPt(*dataPts[nnIdx[0]]);
-        queryPt[0]=n.point.x;
-        queryPt[1]=n.point.y;
+        tm.stop();
+        std::cout << "buildANNPath (set dataPts loop) took: " << tm.getTimeSec() << std::endl;
+        tm.reset();
         
-        dataPts[nnIdx[0]][0]=NULL;
-        dataPts[nnIdx[0]][1]=NULL;
-    }
-    
-    delete [] nnIdx;
-    delete []  dists;
-    delete kdTree;
-    annClose();
+        tm.start();
+        kdTree = new ANNkd_tree(                    // build search structure
+                                dataPts,                    // the data points
+                                nPts,                       // number of points
+                                dim);                       // dimension of space
+        
+        tm.stop();
+        std::cout << "buildANNPath (new ANNkd_tree) took: " << tm.getTimeSec() << std::endl;
+        tm.reset();
+        
+        queryPt[0]=0;
+        queryPt[1]=0;
+        
+        tm.start();
+        for(i=0;i<nPts;i++){
+            kdTree->annkPriSearch(                     // search
+                                  queryPt,                        // query point
+                                  k,                              // number of near neighbors
+                                  nnIdx,                          // nearest neighbors (returned)
+                                  dists,                          // distance (returned)
+                                  eps);                           // error bound
+            Carto::CartoNode n;
+            n.point=Point(dataPts[nnIdx[0]][0], dataPts[nnIdx[0]][1]);
+            
+            path->push_back(n);
+            //annDeallocPt(*dataPts[nnIdx[0]]);
+            queryPt[0]=n.point.x;
+            queryPt[1]=n.point.y;
+            
+            dataPts[nnIdx[0]][0]=NULL;
+            dataPts[nnIdx[0]][1]=NULL;
+        }
+        tm.stop();
+        std::cout << "buildANNPath (annkPriSearch loop) took: " << tm.getTimeSec() << std::endl;
+        tm.reset();
+        
+        tm.start();
+        delete [] nnIdx;
+        delete []  dists;
+        delete kdTree;
+        annClose();
+        tm.stop();
+        std::cout << "buildANNPath (cleanup) took: " << tm.getTimeSec() << std::endl;
+        tm.reset();
 }
 
 int CartoPath::distance(Point p1, Point p2) {
