@@ -217,6 +217,17 @@ void CartoSimulator::MoveToPoint(Point p, int steps=5){
     this->prev_point=this->findPoint(this->line1->length, this->line2->length, this->line2->origin.x);
 }
 
+int CartoSimulator::distance(Point p1, Point p2) {
+    double x = (double)p1.x - (double)p2.x; //calculating number to square in next step
+    double y = (double)p1.y - (double)p2.y;
+    double dist;
+    
+    dist = pow(x, 2) + pow(y, 2);       //calculating Euclidean distance
+    dist = sqrt(dist);
+    
+    return (int)dist;
+}
+
 
 
 

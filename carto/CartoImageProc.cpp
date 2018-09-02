@@ -6,6 +6,9 @@
 #include "CartoPath.hpp"
 #include "CartoNode.hpp"
 #include "CartoSimulator.hpp"
+#include <gsl/gsl_errno.h>
+#include <gsl/gsl_spline.h>
+#include <cmath>
 
 namespace Carto {
 
@@ -47,7 +50,7 @@ namespace Carto {
             for(int y=0; y<inmat->rows; y++) {
                 uchar val=inmat->at<uchar>(Point(x,y));
 
-                if(val > (uchar)start && val < (uchar)end) {
+                if(val >= (uchar)start && val <= (uchar)end) {
                     inmat->at<uchar>(Point(x,y))=val;
                 }else{
                     inmat->at<uchar>(Point(x,y))=255;
@@ -168,77 +171,7 @@ namespace Carto {
     }
     
     void CartoImageProc::buildTSPath(Mat *inmat) {
-        int size=0;
-        int base_block_size=25;
-        int x_block_size=0;
-        int y_block_size=0;
-        int inmat_xmax=0;
-        int inmat_ymax=0;
-        int xctr=0;
-        int yctr=0;
-        CartoPath *cp;
-        
-        Mat mask=inmat->clone();
-        Mat tmp;
-        mask=Scalar::all(255);
-        
-        inmat_xmax=inmat->cols; inmat_ymax=inmat->rows;
-        
-        std::vector<Point> path, finalpath;
-        Point from=Point(0,0);
-        // go top left to bottom right
-        // TODO: clean up
-        do {
-            xctr=0;
-            
-            if(yctr+y_block_size > inmat_ymax)
-                y_block_size=inmat_ymax-yctr;
-            else
-                y_block_size=base_block_size;
-            
-            do{
-                if(xctr+x_block_size > inmat_xmax)
-                    x_block_size=inmat_xmax-xctr;
-                else
-                    x_block_size=base_block_size;
-                
-                this->createMask(inmat, &mask, xctr, x_block_size, yctr, y_block_size);
 
-                for(int i=0; i<mask.cols; i++) {
-                    for(int j=0; j < mask.rows; j++){
-                        if(mask.at<uchar>(Point(i,j)) < 255) {
-                            size++;
-                        }
-                    }
-                }
-                
-                if(size > 1 && size < base_block_size*base_block_size) {
-                    std::cout << "Start x: " << xctr << " Start y: " << yctr << " Size: " << size << std::endl;
-                    
-                    cp = new CartoPath(size);
-                    cp->detected_edges=mask;
-                    cp->buildTSP(&path);
-                    
-                    for(int i=0;i<path.size();i++) {
-                        path[i]=path[i]+Point(xctr,yctr);
-                        line(*inmat,from,path[i],Scalar(200,200,200),1,8);
-                        from=path[i];
-                    }
-                    this->show(*inmat,"TSP Path");
-                    finalpath.insert(finalpath.end(), path.begin(), path.end());
-                    path.clear();
-                    return;
-                }
-                xctr+=x_block_size;
-                size=0;
-            } while(xctr != inmat_xmax);
-            yctr+=y_block_size;
-        } while(yctr != inmat_ymax);
-        
-        for(int i=0;i<finalpath.size();i++) {
-           // line(*inmat,from,finalpath[i],Scalar(200,200,200),1,8);
-            from=finalpath[i];
-        }
     }
     
     void CartoImageProc::buildPath(Mat *inmat) {
@@ -310,10 +243,72 @@ namespace Carto {
             Point simp=this->sim->prev_point;
             
             if(this->sim->draw_line) {
+                /*
                 //line(*inmat,start_point,annNode[i].point,Scalar(200,200,200),1,8);
                 //start_point=annNode[i].point;
+                Point inter_prev_point = start_point;
+                
+                if(this->sim->distance(this->sim->prev_point,annNode[i].point) > 40) {
+                    gsl_interp_accel *accel_ptr;
+                    gsl_spline *spline_ptr;
+                    double x_array[300], y_array[300];
+                    Point midpoint;
+                    midpoint.x = (start_point.x + simp.x) /2;
+                    midpoint.y = (start_point.y + simp.y) /2;
+                    int npts = 3;
+            
+                    x_array[1]=(double)midpoint.x;
+                    y_array[1]=(double)midpoint.y;
+                 
+                    if(start_point.x > simp.x) {
+                        x_array[0]=(double)simp.x;
+                        x_array[1]=(double)midpoint.x+1;
+                        x_array[2]=(double)start_point.x+2;
+                 
+                        y_array[0]=(double)simp.y;
+                        y_array[2]=(double)start_point.y;
+                    }else if(start_point.x == simp.x) {
+                        x_array[0]=(double)start_point.x;
+                        x_array[1]=(double)midpoint.x+1;
+                        x_array[2]=(double)simp.x+2;
+                 
+                        y_array[0]=(double)start_point.y;
+                        y_array[2]=(double)simp.y;
+                    }else{
+                        x_array[0]=(double)start_point.x;
+                        x_array[1]=(double)midpoint.x+1;
+                        x_array[2]=(double)simp.x+2;
+                 
+                        y_array[0]=(double)start_point.y;
+                        y_array[2]=(double)simp.y;
+                    }
+
+                 
+                    accel_ptr = gsl_interp_accel_alloc();
+                    spline_ptr = gsl_spline_alloc(gsl_interp_polynomial, npts);
+                 
+                    gsl_spline_init(spline_ptr,x_array, y_array, npts);
+                 
+                    double current_x = x_array[0];
+                    double inter_y,inter_y2;
+                    Point inter_point;
+                 
+                    while(current_x < simp.x) {
+                        inter_y=gsl_spline_eval_deriv(spline_ptr,current_x,accel_ptr);
+                        inter_y2=gsl_spline_eval_deriv2(spline_ptr,current_x,accel_ptr);
+                        inter_point = Point(current_x,(inter_y*y_array[0]));
+                        line(*inmat,inter_prev_point,inter_point,Scalar(200,200,200),1,8);
+                        current_x++;
+                        inter_prev_point=inter_point;
+                    }
+                 
+                    gsl_spline_free(spline_ptr);
+                    gsl_interp_accel_free(accel_ptr);
+                }else{
+                    line(*inmat,start_point,simp,Scalar(200,200,200),1,8);
+                }
+               */
                 line(*inmat,start_point,simp,Scalar(200,200,200),1,8);
-                start_point=simp;
                 
                 //std::cout << this->sim->prev_point.x << " " << this->sim->prev_point.y;
                 //std::cout << " Len1: " << this->sim->line1->length << " Len2: " << this->sim->line2->length << std::endl;

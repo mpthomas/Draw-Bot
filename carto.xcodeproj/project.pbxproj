@@ -16,6 +16,10 @@
 		C9C1D77B2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D77A2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib */; };
 		C9C1D77D2123CBF60095BF44 /* libANN.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D77C2123CBF60095BF44 /* libANN.a */; };
 		C9C1D77F2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D77E2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib */; };
+		C9C1D7822138D0F00095BF44 /* libgsl.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D7812138D0F00095BF44 /* libgsl.23.dylib */; };
+		C9C1D7842138D1090095BF44 /* libgslcblas.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D7832138D1090095BF44 /* libgslcblas.0.dylib */; };
+		C9C1D7852138D1090095BF44 /* libgslcblas.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D7832138D1090095BF44 /* libgslcblas.0.dylib */; };
+		C9C1D7862138D10F0095BF44 /* libgsl.23.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C9C1D7812138D0F00095BF44 /* libgsl.23.dylib */; };
 		C9D8B1081F8DA8750099956C /* CartoMoveTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */; };
 		C9D8B10A1F8F20490099956C /* CartoSimulator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */; };
 		C9D8B113201435AB0099956C /* CartoNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9D8B111201435AB0099956C /* CartoNode.cpp */; };
@@ -86,6 +90,8 @@
 		C9C1D77A2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.3.4.2.dylib; path = carto/libopencv_core.3.4.2.dylib; sourceTree = "<group>"; };
 		C9C1D77C2123CBF60095BF44 /* libANN.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libANN.a; path = ../../ann_1.1.2/lib/libANN.a; sourceTree = "<group>"; };
 		C9C1D77E2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgcodecs.3.4.2.dylib; path = carto/libopencv_imgcodecs.3.4.2.dylib; sourceTree = "<group>"; };
+		C9C1D7812138D0F00095BF44 /* libgsl.23.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgsl.23.dylib; path = ../../../../../usr/local/Cellar/gsl/2.5/lib/libgsl.23.dylib; sourceTree = "<group>"; };
+		C9C1D7832138D1090095BF44 /* libgslcblas.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libgslcblas.0.dylib; path = ../../../../../usr/local/Cellar/gsl/2.5/lib/libgslcblas.0.dylib; sourceTree = "<group>"; };
 		C9D4CFE8202951C1005379BB /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		C9D4CFE9202D410B005379BB /* json.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; name = json.hpp; path = ../../../json.hpp; sourceTree = "<group>"; };
 		C9D8B0F41F8093C60099956C /* carto */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = carto; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +130,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9C1D7822138D0F00095BF44 /* libgsl.23.dylib in Frameworks */,
+				C9C1D7842138D1090095BF44 /* libgslcblas.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,8 +140,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9C1D77F2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib in Frameworks */,
+				C9C1D7862138D10F0095BF44 /* libgsl.23.dylib in Frameworks */,
 				C9C1D77D2123CBF60095BF44 /* libANN.a in Frameworks */,
 				C9C1D77B2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib in Frameworks */,
+				C9C1D7852138D1090095BF44 /* libgslcblas.0.dylib in Frameworks */,
 				C9C1D7792123CB0D0095BF44 /* libopencv_highgui.3.4.2.dylib in Frameworks */,
 				C9C1D7772123CAEF0095BF44 /* libopencv_imgproc.3.4.2.dylib in Frameworks */,
 				C9F8E6DE2024B4BA00D554F6 /* libortools.dylib in Frameworks */,
@@ -217,6 +227,8 @@
 		C9F8E6D820203AC500D554F6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C9C1D7832138D1090095BF44 /* libgslcblas.0.dylib */,
+				C9C1D7812138D0F00095BF44 /* libgsl.23.dylib */,
 				C9C1D77E2123CD3A0095BF44 /* libopencv_imgcodecs.3.4.2.dylib */,
 				C9C1D77C2123CBF60095BF44 /* libANN.a */,
 				C9C1D77A2123CB1A0095BF44 /* libopencv_core.3.4.2.dylib */,
@@ -453,6 +465,10 @@
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lopencv",
 					"-v",
+					"-lgsl",
+					"-lgslcblas",
+					"-L/usr/local/lib",
+					"-I/usr/local/include",
 				);
 				SDKROOT = macosx;
 			};
@@ -513,6 +529,10 @@
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lopencv",
 					"-v",
+					"-lgsl",
+					"-lgslcblas",
+					"-L/usr/local/lib",
+					"-I/usr/local/include",
 				);
 				SDKROOT = macosx;
 			};
@@ -541,6 +561,7 @@
 					/Users/matt/xcode/ann/lib,
 					.,
 					"/Users/matt/xcode/or-tools-6.4/lib",
+					/usr/local/Cellar/gsl/2.5/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-v",
@@ -574,6 +595,7 @@
 					/Users/matt/xcode/ann/lib,
 					.,
 					"/Users/matt/xcode/or-tools-6.4/lib",
+					/usr/local/Cellar/gsl/2.5/lib,
 				);
 				OTHER_LDFLAGS = (
 					"-v",
@@ -610,6 +632,7 @@
 					.,
 					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
 					/usr/local/opt/qt5/lib,
+					/usr/local/Cellar/gsl/2.5/lib,
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -642,6 +665,7 @@
 					.,
 					"$(PROJECT_DIR)/carto/../../../or-tools-6.4/lib",
 					/usr/local/opt/qt5/lib,
+					/usr/local/Cellar/gsl/2.5/lib,
 				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";

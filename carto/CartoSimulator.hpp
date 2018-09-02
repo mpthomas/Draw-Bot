@@ -98,6 +98,7 @@ public:
     
     void MoveToPoint(Point p, int steps);
     CvPoint2D32f findPoint(int side_a, int side_b, int side_c);
+    int distance(Point p1, Point p2);
 };
 
 #endif /* CartoSimulator_hpp */

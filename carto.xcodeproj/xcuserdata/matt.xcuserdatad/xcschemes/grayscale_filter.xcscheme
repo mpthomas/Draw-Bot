@@ -63,7 +63,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/matt/xcode/starry_night.jpg"
+            argument = "/Users/matt/xcode/statue_of_liberty_torch.jpg"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

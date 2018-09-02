@@ -103,7 +103,7 @@ cv::Mat CreatePerlinNoiseImage(const cv::Size &size, const double &scale)
 {
     cv::TickMeter tm;
     cv::Mat img;
-
+//
     img.create(size, CV_8UC1);
     tm.start();
     for (int y = 0; y < size.height; ++y) {

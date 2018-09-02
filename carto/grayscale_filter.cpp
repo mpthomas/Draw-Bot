@@ -105,14 +105,17 @@ void init_window(int win_number) {
     i = &window_img[window_number];
     
     *i=p->mat.clone();
-    
+   
     p->filterGrayscale(i,starts[window_number],ends[window_number]);
-    p->filterPerlin(i,(double)perlin_scales[window_number]/100);
+    
+    if(perlin_scales[window_number] > 0) {
+        p->filterPerlin(i,(double)perlin_scales[window_number]/100);
+    }
     //p->autoFilterPerlin(i,(double)perlin_scales[window_number]/100);
     
     edges[window_number]=i->clone();
-    Canny(edges[window_number],edges[window_number],1,3,3);
-    bitwise_not(edges[window_number],edges[window_number]);
+    //Canny(edges[window_number],edges[window_number],1,3,3);
+    //bitwise_not(edges[window_number],edges[window_number]);
     
     p->show(*i,window_name);
     
