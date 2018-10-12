@@ -100,7 +100,7 @@
 		C9D8B1051F8A7F110099956C /* CartoSimulator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoSimulator.hpp; sourceTree = "<group>"; };
 		C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoMoveTest.cpp; sourceTree = "<group>"; };
 		C9D8B1091F8F1A180099956C /* CartoMoveTest.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CartoMoveTest.hpp; sourceTree = "<group>"; };
-		C9D8B10B1FCCFCAF0099956C /* car.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = car.jpg; sourceTree = "<group>"; };
+		C9D8B10B1FCCFCAF0099956C /* road_atlanta_bmw.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = road_atlanta_bmw.jpg; sourceTree = "<group>"; };
 		C9D8B10E2014347E0099956C /* CartoPath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoPath.cpp; sourceTree = "<group>"; };
 		C9D8B10F2014347E0099956C /* CartoPath.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CartoPath.hpp; sourceTree = "<group>"; };
 		C9D8B111201435AB0099956C /* CartoNode.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CartoNode.cpp; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 				C9D8B1041F8A7F110099956C /* CartoSimulator.cpp */,
 				C9D8B1051F8A7F110099956C /* CartoSimulator.hpp */,
 				C9D8B1071F8DA8750099956C /* CartoMoveTest.cpp */,
-				C9D8B10B1FCCFCAF0099956C /* car.jpg */,
+				C9D8B10B1FCCFCAF0099956C /* road_atlanta_bmw.jpg */,
 				C9D8B1091F8F1A180099956C /* CartoMoveTest.hpp */,
 				C9D8B10E2014347E0099956C /* CartoPath.cpp */,
 				C9D8B10F2014347E0099956C /* CartoPath.hpp */,

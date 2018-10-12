@@ -106,7 +106,7 @@ void CartoSimulatorLine::goFromTo(CvPoint2D32f from, Point to){
     //this->arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::app);
     int s=0;
     
-    *this->arduino << this->motor_number << "," << s << "," << std::setprecision(4) << this->target_distance << std::endl;
+    *this->arduino << this->motor_number << "," << s << "," << std::setprecision(4) << this->target_distance << "," << this->color[0] << std::endl;
     this->arduino->flush();
     //this->arduino.close();
     //this->go(0);
@@ -207,6 +207,9 @@ void CartoSimulator::MoveToPoint(Point p, int steps=5){
     
     ////p.x=(p.x + 220) * 5;
     ////p.y=(p.y + 131) * 5;
+    
+    this->line1->color=this->canvas->at<uchar>(p);
+    this->line2->color=this->line1->color;
     
     this->line1->goFromTo(this->prev_point,p);
     this->line2->goFromTo(this->prev_point,p);

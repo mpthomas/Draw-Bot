@@ -26,9 +26,10 @@ public:
     
     CartoPath();
     CartoPath(int size);
+    //CartoPath(const CartoPath& aPath) {}
 
     ~CartoPath();
-    void buildANNPath(std::vector<Carto::CartoNode> *path);
+    void buildANNPath(std::vector<Carto::CartoNode> *path, CvPoint start_point = cvPoint(0,0));
     void buildTSP(std::vector<cv::Point> *path);
     int distance(cv::Point p1, cv::Point p2);
 private:

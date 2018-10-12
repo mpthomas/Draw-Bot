@@ -55,6 +55,7 @@ public:
     Point origin, end;
     int steps_left = 0, motor_number =0;
     float length, real_length, target_distance;
+    Scalar color;
     std::ofstream *arduino;
     
     TickMeter tick_meter;
@@ -81,6 +82,7 @@ public:
     
     int current_x = 0;
     int current_y = 0;
+
     Mat *canvas;
     CvPoint2D32f prev_point;
     bool draw_line = false;
