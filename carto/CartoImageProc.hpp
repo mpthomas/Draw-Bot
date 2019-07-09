@@ -52,6 +52,7 @@ public:
     void toGrayscale();
     void show();
     void show(cv::Mat mat, std::string name);
+    void reloadImage(std::string filename);
     
 };
 }

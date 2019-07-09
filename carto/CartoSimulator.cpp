@@ -9,6 +9,9 @@
 #include "CartoSimulator.hpp"
 #include "CartoMoveTest.hpp"
 
+#define HEAD_WIDTH_MM   155
+#define STEPS_PER_MM    5.8
+
 using namespace cv;
 
 /************************/
@@ -21,7 +24,7 @@ CartoSimulatorLine::CartoSimulatorLine(Point origin, Point end) {
     this->end=end;
     
     //this->length = this->_CalcEDistance(this->origin, this->end);
-    //this->real_length=this->length;
+    this->real_length=this->length;
     
     if(this->origin.x == 0) {
         a=end.x;
@@ -29,13 +32,25 @@ CartoSimulatorLine::CartoSimulatorLine(Point origin, Point end) {
         a=abs(this->origin.x - end.x);
     }
     
-    b = origin.y;
+    b = end.y;
     c = (a * a) + (b * b);
     c=sqrt(c);
     
-    this->real_length = (int)c;
+   this->real_length = (int)c;
     this->length = (int)c;
     
+    /* +++ Temporary calculation of steps taking the head into account +++ */
+    /*
+    if(this->origin.x == 0) {
+        a=end.x - ( (HEAD_WIDTH_MM/2) * STEPS_PER_MM );
+    }else{
+        a=abs(this->origin.x - (end.x + ( (HEAD_WIDTH_MM/2) * STEPS_PER_MM)));
+    }
+    
+    b=end.y;
+    c = (a * a) + (b * b);
+    this->real_length = (int)sqrt(c);
+     */
 }
 
 CartoSimulatorLine::~CartoSimulatorLine() {}
@@ -90,7 +105,7 @@ void CartoSimulatorLine::goFromTo(CvPoint2D32f from, Point to){
     c=(int)sqrt(c);
     
     // rounding issue so do nothing
-    if(c == this->real_length) {
+    if(c == this->length) {
         this->target_distance = 0;
     }else{
         this->target_distance = c - this->real_length;
@@ -105,6 +120,25 @@ void CartoSimulatorLine::goFromTo(CvPoint2D32f from, Point to){
     
     //this->arduino.open("/Users/matt/xcode/arduino.txt", std::ofstream::app);
     int s=0;
+    
+    /* +++ Temporary calculation of steps taking the head into account +++ */
+    /*
+    if(this->origin.x == 0) {
+        a=to.x - ( (HEAD_WIDTH_MM/2) * STEPS_PER_MM );
+    }else{
+        a=abs(this->origin.x - (to.x + ( (HEAD_WIDTH_MM/2) * STEPS_PER_MM)));
+    }
+    
+    b=to.y;
+    c = (a * a) + (b * b);
+    c = sqrt(c);
+    if(c == this->real_length) {
+        this->target_distance = 0;
+    }else{
+        this->target_distance = c - this->real_length;
+        this->real_length = c;
+    }
+    */
     
     *this->arduino << this->motor_number << "," << s << "," << std::setprecision(4) << this->target_distance << "," << this->color[0] << std::endl;
     this->arduino->flush();
@@ -128,13 +162,14 @@ float CartoSimulatorLine::getEdist(Point p) {
 /************************/
 
 CartoSimulator::CartoSimulator(Mat *cvMat) {
-    int max_x = 980 * 5;  // 980mm / 5 steps per mm
+    int max_x = 980 * STEPS_PER_MM;  // 980mm / 5 steps per mm
     this->draw_line=true;
     //int max_x=cvMat->cols;
     
     this->canvas=cvMat;
     //this->prev_point=this->findPoint(440*5, 736*5, 980*5);
-    this->prev_point=this->findPoint(320*5, 700*5, 980*5);
+    //this->prev_point=this->findPoint(320*STEPS_PER_MM, 700*STEPS_PER_MM, 980*STEPS_PER_MM);
+    this->prev_point=this->findPoint(465*STEPS_PER_MM, 767*STEPS_PER_MM, 980*STEPS_PER_MM);
     //this->prev_point=Point(0,0);
 
     this->arduino = new std::ofstream;
@@ -148,6 +183,12 @@ CartoSimulator::CartoSimulator(Mat *cvMat) {
     this->line2->setMotorNumber(1);
     this->line2->arduino=this->arduino;
     
+    std::cout << "CartoSimulator(): Constructor prev_point: " << Point(this->prev_point) << std::endl;
+    std::cout << "CartoSimulator(): Line 1 len: " << this->line1->length << std::endl;
+    std::cout << "CartoSimulator(): Line 2 len: " << this->line2->length << std::endl;
+    Point p = (Point)this->findPoint(this->line1->length,this->line2->length, this->line2->origin.x);
+    std::cout << "CartoSimulator(): findPoint(line1,line2): " << p << std::endl;
+
     //std::cout << this->prev_point.x << " " << this->prev_point.y;
     //std::cout << " Len1: " << this->line1->length << " Len2: " << this->line2->length << " START" << std::endl;
 }
@@ -193,6 +234,7 @@ CvPoint2D32f CartoSimulator::findPoint(int side_a, int side_b, int side_c) // le
     // side_a / sin(90) = y / sin(c_adj_degrees)
     double y = sin(c_adj_angle) * (side_a / sin(90));
     
+    //return CvPoint2D32f(x-(x*.109),y-(y*.109));
     return CvPoint2D32f(x,y);
 }
 
@@ -218,6 +260,7 @@ void CartoSimulator::MoveToPoint(Point p, int steps=5){
     CartoMoveTest test;
 
     this->prev_point=this->findPoint(this->line1->length, this->line2->length, this->line2->origin.x);
+    //circle(*this->canvas,this->prev_point, 2, Scalar(0,0,0),1,8);
 }
 
 int CartoSimulator::distance(Point p1, Point p2) {

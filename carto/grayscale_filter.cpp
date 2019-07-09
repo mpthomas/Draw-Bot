@@ -9,6 +9,8 @@
 #include "json.hpp"
 //#include <QtWidgets/QFileDialog>
 
+#define BASE_WINDOW_WIDTH   700
+#define BASE_WINDOW_HEIGHT  670
 using namespace Carto;
 using namespace cv;
 using json = nlohmann::json;
@@ -28,21 +30,22 @@ void get_layer_count();
 void delete_layer(void *userdata);
 
 int start = 0, end = 150, total_layers=1;
-int starts[]= {1,1,1,1,1,1,1,1}; // Leave at 1 to pass getTrackbarPos test
-int ends[] = {255,255,255,255,255,255,255};
-int perlin_scales[] = {25,25,25,25,25,25,25};
+int starts[]= {1,1,1,1,1,1,1,1,1}; // Leave at 1 to pass getTrackbarPos test
+int ends[] = {255,255,255,255,255,255,255,255,255};
+int perlin_scales[] = {25,25,25,25,25,25,25,25,25};
 int canny_scales[] = {0,1};
-int curr_window=0;
+int curr_window=0, next_window_x=BASE_WINDOW_WIDTH, next_window_y=0;
 int perlin_scale=25;
+bool first_init = true;
 //QString img_file;
 
 std::string *config_file, image_name;
 
 Mat imgmat1, imgmat2, imgmat3, imgmat4 ,canny, preview, preview_tsp, path_img;
-Mat window_img[7], edges[7];
+Mat window_img[8], edges[8];
 
 CartoImageProc *img;
-CartoImageProc *procs[7];
+CartoImageProc *procs[8];
 
 void refresh(int pos, void *userData);
 int main( int argc, char** argv ){
@@ -71,7 +74,9 @@ int main( int argc, char** argv ){
     
     init_control_panel();
     load(p);
-
+    moveWindow("Preview",0,0);
+    resizeWindow("Preview",BASE_WINDOW_WIDTH,BASE_WINDOW_HEIGHT);
+    first_init=false;
     waitLoop();
 }
 
@@ -88,7 +93,25 @@ void waitLoop() {
                 refresh_preview();
                 refresh_path();
                 break;
-            }default: { exit(0); }
+            }
+            case 'l': {
+                img->reloadImage(image_name);
+                img->toGrayscale();
+                
+                get_layer_count();
+                
+                for(int i=0; i<total_layers; i++) {
+                    procs[i] = new CartoImageProc(image_name, i);
+                    procs[i]->toGrayscale();
+                }
+                for(int i=0;i<total_layers;i++) {
+                    init_window((int)i);
+                }
+                refresh_preview();
+
+                break;
+            }
+            default: { exit(0); }
         }
     }
 }
@@ -113,22 +136,30 @@ void init_window(int win_number) {
         p->filterPerlin(i,(double)perlin_scales[window_number]/100);
     }
     //p->autoFilterPerlin(i,(double)perlin_scales[window_number]/100);
-    
-    edges[window_number]=i->clone();
-    
+
     if(canny_scales[window_number] > 0) {
         Canny(*i,*i,1,3,3);
         bitwise_not(*i,*i);
     }
     //bitwise_not(edges[window_number],edges[window_number]);
-    
+    edges[window_number]=i->clone();
     p->show(*i,window_name);
     
-    if(!(getTrackbarPos("Start",window_name) > 0)) {
+    if(first_init) {
         createTrackbar("Start",window_name,&starts[window_number],255,refresh_window,(void *)&p->id);
         createTrackbar("End",window_name,&ends[window_number],255,refresh_window,&p->id);
         createTrackbar("Perlin",window_name,&perlin_scales[window_number],100,refresh_window,(void *)&p->id);
         createTrackbar("Canny",window_name,&canny_scales[window_number],1,refresh_window,(void *)&p->id);
+        resizeWindow(window_name,BASE_WINDOW_WIDTH,BASE_WINDOW_HEIGHT);
+  
+        if(next_window_x+BASE_WINDOW_WIDTH > 2559) {
+            next_window_x=0;
+            next_window_y=BASE_WINDOW_HEIGHT;
+        }
+        
+        moveWindow(window_name,next_window_x,next_window_y);
+        
+        next_window_x+=BASE_WINDOW_WIDTH;
     }
 }
 
@@ -137,6 +168,7 @@ void refresh_window(int pos, void *userdata) {
     
     int num=*window;
     init_window(num);
+    refresh_preview();
     
     return;
 }

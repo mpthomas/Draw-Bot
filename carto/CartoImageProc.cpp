@@ -175,7 +175,8 @@ namespace Carto {
     }
     
     void CartoImageProc::getPath(cv::Mat *inmat, std::vector<Carto::CartoNode> *nodes, cv::Point start_point) {
-        int target_x=1634, target_y=729;
+        //int target_x=1634, target_y=729;
+        int target_x=1736, target_y=2052;
         Mat drawingMat = imread("/Users/matt/xcode/track_bmw.jpeg");
         CartoPath *path = new CartoPath();
         
@@ -197,7 +198,8 @@ namespace Carto {
         path->detected_edges = drawingMat.clone();
         //*inmat=drawingMat.clone();
         
-        path->buildANNPath(nodes);
+        //path->buildANNPath(nodes);
+        path->buildANNPath(nodes,Point(1736,2052));
         
         return;
     }
@@ -206,8 +208,8 @@ namespace Carto {
         
         Mat drawingMat = imread("/Users/matt/xcode/track_bmw.jpeg");
         CartoPath *path = new CartoPath();
-        int target_x=1634, target_y=729;
-        
+        //int target_x=1634, target_y=729;
+        int target_x=1736, target_y=2052;
         if(drawingMat.empty()) {
             std::cout << "Unable to find blank drawing mat";
             return;
@@ -225,12 +227,15 @@ namespace Carto {
         
         path->detected_edges = drawingMat.clone();
         this->sim=new CartoSimulator(&path->detected_edges);
-
+        
         /* Reset it. No longer need old image */
         drawingMat=Scalar::all(255);
         this->line_counter=0;
 
         /* Finally Render it */
+        std::cout << "Start Point is: " << Point(this->sim->prev_point) << std::endl;
+        std::cout << "First Node is: " << Point(nodes->at(0).point) << std::endl;
+        
         this->renderPath(*nodes, &drawingMat, this->sim->prev_point);
         
         /* Reset our inmat so it can be displayed by caller */
@@ -238,70 +243,12 @@ namespace Carto {
         
         this->sim->arduino->close();
     }
-    /* This should soon go away. Replicated by getPath/processPath combo */
-    void CartoImageProc::buildPath(Mat *inmat) {
-        TickMeter tm;
-        tm.start();
-        CartoPath *path = new CartoPath();
-        int target_x=1634, target_y=729;
-        std::vector<CartoNode> annPath;
-        
-        // The path image needs to be the size of the drawing board
-        // therefore "paste" in the smaller image.
-        //Mat drawingMat(this->canvas_rows, this->canvas_cols, CV_8UC1);
-        Mat drawingMat = imread("/Users/matt/xcode/track_bmw.jpeg");
-        
-        if(drawingMat.empty()) {
-            std::cout << "Unable to find blank drawing mat";
-            return;
-        }
-        
-        cvtColor(drawingMat,drawingMat,COLOR_BGR2GRAY);
-        drawingMat=Scalar::all(255);
-        
-        if(inmat->rows <= drawingMat.rows and inmat->cols <= drawingMat.cols) {
-            inmat->copyTo(drawingMat(Rect(target_x, target_y,inmat->cols,inmat->rows)));
-        }else{
-            std::cout << "Mismatch for source image and drawing mat\n";
-            return;
-        }
-        
-        //path->detected_edges=inmat->clone();
-        path->detected_edges = drawingMat.clone();
-        *inmat=drawingMat.clone();
-        *inmat=Scalar::all(255);
-        
-        path->buildANNPath(&annPath);
-        
-        std::cout << "Found" << path->detected_edges.rows << " edges" << std::endl;
-        
-        if(path->detected_edges.rows == 0) {
-            std::cout << "No rows found" << std::endl;
-            return;
-        }
-        
-        this->sim=new CartoSimulator(inmat);
-        this->line_counter=0;
-        
-        std::cout << "Start Point is (" << this->sim->prev_point.x << "," << this->sim->prev_point.y << ")" << std::endl;
-        
-        this->sim->tick_meter.reset();
-        this->renderPath(annPath, inmat, this->sim->prev_point);
-        this->sim->arduino->close();
-        
-        double average_time = this->sim->tick_meter.getTimeMilli() / this->sim->tick_meter.getCounter();
-        std::cout << "Average MoveToPoint is: " << average_time << " (" << this->sim->tick_meter.getCounter() << ")\n";
-        tm.stop();
-        std::cout << "buildPath: " << tm.getTimeSec() << std::endl;
-    }
     
     void CartoImageProc::renderPath(std::vector<CartoNode> annNode, Mat *inmat, Point start_point){
         if(annNode.size() == 0) {
             return;
         }
-        
-        //std::cout << "CartoImageProc::renderPath point: " << start_point << std::endl;
-        
+
         for(int i=0;i<annNode.size();i++) {
             this->sim->MoveToPoint(annNode[i].point,1);
             //Point simp=Point(this->sim->prev_point.x/5, this->sim->prev_point.y/5);
@@ -309,11 +256,11 @@ namespace Carto {
             
             if(this->sim->draw_line) {
  
-                line(*inmat,start_point,simp,Scalar(200,200,200),1,8);
+                line(*inmat,start_point,simp,Scalar(0,0,0),2,8);
                 
-                if(this->sim->line1->color[0] < 100) {
-                    circle(*inmat, simp, 2, Scalar(200,200,200),1);
-                }
+                //if(this->sim->line1->color[0] < 100) {
+                 //   circle(*inmat, simp, 2, Scalar(200,200,200),1);
+                //}
                 //std::cout << this->sim->prev_point.x << " " << this->sim->prev_point.y;
                 //std::cout << " Len1: " << this->sim->line1->length << " Len2: " << this->sim->line2->length << std::endl;
             }
@@ -324,6 +271,16 @@ namespace Carto {
             }
             //start_point=annNode[i].point;
             start_point=simp;
+        }
+    }
+    
+    void CartoImageProc::reloadImage(std::string filename) {
+        struct stat buffer;
+        
+        if(stat(filename.c_str(), &buffer) == 0) {
+            this->mat = imread(filename,1);
+        }else{
+            cout << "CartoImageProc::reloadImage(): File not found: " << filename << endl;
         }
     }
 }

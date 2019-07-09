@@ -228,7 +228,7 @@ namespace Carto {
         
         for(int i =0 ; i < point_short_path.size()-1;i++) {
             line(img,point_short_path[i],point_short_path[i+1],Scalar(0,0,0),1,8);
-            circle(img, point_short_path[i], 2, Scalar(0,0,0),-1);
+            //circle(img, point_short_path[i], 2, Scalar(0,0,0),-1);
         }
         
         std::cout << "Short Path: " << point_short_path.size() << " Long Path: " << point_long_path.size() << std::endl;
@@ -239,9 +239,10 @@ namespace Carto {
         // Create CartoNode path using shorter path
         path->clear();
         
-        for(int i =0; i < point_short_path.size(); i++) {
+        // change loop to either point_short_path or point_long_path to determine which is returned
+        for(int i =0; i < point_long_path.size(); i++) {
             Carto::CartoNode node;
-            node.point=Point(point_short_path[i]);
+            node.point=Point(point_long_path[i]);
             path->push_back(node);
         }
 }
