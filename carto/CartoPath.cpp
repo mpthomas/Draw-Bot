@@ -36,7 +36,8 @@ namespace Carto {
     CartoPath::CartoPath() : size_(0) {}
     CartoPath::CartoPath(int size) : size_(size) {}
     CartoPath::~CartoPath() {}
-
+    Mat img;
+    
     void CartoPath::buildTSP(std::vector<Point> *path) {
         std::vector<Point> parr;
         path->clear();
@@ -112,7 +113,7 @@ namespace Carto {
         return (from * this->size_ + to).value();
     }
     
-    void CartoPath::buildANNPath(std::vector<Carto::CartoNode> *path){
+    void CartoPath::buildANNPath(std::vector<Carto::CartoNode> *path, CvPoint start_point){
         TickMeter tm;
         tm.start();
         int i=0, j=0, acc=0, dim = 2, k=2, eps=0;
@@ -122,6 +123,7 @@ namespace Carto {
         ANNidxArray nnIdx;     // near neighbor indices
         ANNdistArray dists;    // near neighbor distances
         ANNkd_tree* kdTree;    // search structure
+        std::vector<Point> point_long_path, point_short_path;
         
         for(i=0; i != this->detected_edges.rows; i++){
             for(j=0; j != this->detected_edges.cols; j++){
@@ -174,8 +176,8 @@ namespace Carto {
         std::cout << "buildANNPath (new ANNkd_tree) took: " << tm.getTimeSec() << std::endl;
         tm.reset();
         
-        queryPt[0]=0;
-        queryPt[1]=0;
+        queryPt[0]=start_point.x;
+        queryPt[1]=start_point.y;
         
         tm.start();
         for(i=0;i<nPts;i++){
@@ -189,6 +191,8 @@ namespace Carto {
             n.point=Point(dataPts[nnIdx[0]][0], dataPts[nnIdx[0]][1]);
             
             path->push_back(n);
+            point_long_path.push_back(Point(n.point));
+            
             //annDeallocPt(*dataPts[nnIdx[0]]);
             queryPt[0]=n.point.x;
             queryPt[1]=n.point.y;
@@ -196,6 +200,7 @@ namespace Carto {
             dataPts[nnIdx[0]][0]=NULL;
             dataPts[nnIdx[0]][1]=NULL;
         }
+        
         tm.stop();
         std::cout << "buildANNPath (annkPriSearch loop) took: " << tm.getTimeSec() << std::endl;
         tm.reset();
@@ -208,6 +213,38 @@ namespace Carto {
         tm.stop();
         std::cout << "buildANNPath (cleanup) took: " << tm.getTimeSec() << std::endl;
         tm.reset();
+        
+        /* Finally try to reduce the path length */
+        point_short_path.resize(point_long_path.size());
+        //for(int i = 0; i < point_long_path.size()-4; i+=4) {
+            approxPolyDP(point_long_path, point_short_path, 3, false);
+         //   i=i;
+        //}
+        
+        if(img.rows == 0) {
+            img = Mat::zeros(this->detected_edges.cols-1634, this->detected_edges.rows-729, CV_8UC1);
+            img=Scalar::all(255);
+        }
+        
+        for(int i =0 ; i < point_short_path.size()-1;i++) {
+            line(img,point_short_path[i],point_short_path[i+1],Scalar(0,0,0),1,8);
+            //circle(img, point_short_path[i], 2, Scalar(0,0,0),-1);
+        }
+        
+        std::cout << "Short Path: " << point_short_path.size() << " Long Path: " << point_long_path.size() << std::endl;
+        
+        namedWindow("Short Path",CV_GUI_EXPANDED | WINDOW_NORMAL);
+        //imshow("Short Path",img);
+        
+        // Create CartoNode path using shorter path
+        path->clear();
+        
+        // change loop to either point_short_path or point_long_path to determine which is returned
+        for(int i =0; i < point_long_path.size(); i++) {
+            Carto::CartoNode node;
+            node.point=Point(point_long_path[i]);
+            path->push_back(node);
+        }
 }
 
 int CartoPath::distance(Point p1, Point p2) {

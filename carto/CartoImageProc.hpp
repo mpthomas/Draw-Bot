@@ -26,6 +26,7 @@ public:
     int window_ctr,id, line_counter, canvas_rows=3000, canvas_cols=4900;
     cv::Mat mat;
     CartoSimulator *sim;
+    std::vector<CartoNode> annPath;
 
     // Constructors
     CartoImageProc();
@@ -43,12 +44,15 @@ public:
     void filterPerlin(cv::Mat *inmat, double scale);
     void autoFilterPerlin(cv::Mat *inmat, double scale);
     void createMask(cv::Mat *inmat, cv::Mat *mask, int start_x, int len_x, int start_y, int len_y);
+    void getPath(cv::Mat *inmat,  std::vector<Carto::CartoNode> *nodes, cv::Point start_point = cv::Point(0,0));
+    void processPath(cv::Mat *inmat, std::vector<Carto::CartoNode> *nodes);
     void buildTSPath(cv::Mat *inmat);
     void buildPath(cv::Mat *inmat);
     void renderPath(std::vector<CartoNode>, cv::Mat *inmat, cv::Point start_point);
     void toGrayscale();
     void show();
     void show(cv::Mat mat, std::string name);
+    void reloadImage(std::string filename);
     
 };
 }
