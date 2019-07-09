@@ -34,7 +34,7 @@ Components to build drawing machine (if desired)
 ## Examples
 
 [![Drawbot](images/drawbot.jpg "Drawbot")](images/drawbot.jpg "Drawbot")
-[![Screenshot](images/cat.jpg "Cat")](images/screenshot.jpg "Screenshot")
+[![Screenshot](images/screenshot.jpg "Cat")](images/screenshot.jpg "Screenshot")
 [![Cat](images/cat.jpg "Cat")](images/cat.jpg "Cat")
 [![Angel](images/angel.jpg "Angel")](images/angel.jpg "Angel")
 [![Porsche](images/porsche.jpg "Angel")](images/porsche.jpg "Porsche")
